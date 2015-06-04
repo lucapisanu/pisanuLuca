@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Area Acquisti</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name ="description" content="Home della sezione Cliente">
+        <meta name ="author" content="Luca Pisanu">
+        <!-- link ai file css -->
+        <link rel="stylesheet" type="text/css" href="../../CSS/general.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../CSS/fixed.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../CSS/stili.css" media="screen">
+        
+    </head>
+    <body>
+        <div id="page"> <!-- divisone principale -->
+       
+            <div id="header"> <!-- divisione parte superiore -->
+                <div id="logo"> <!-- divisione contente il logo e il titolo -->
+
+                </div>
+               
+            </div>
+            
+            <div id="menu"><!-- divisone con i link alle sezioni -->
+                    <ul>
+                        <li><a href="HomeCliente.html">Home</a></li>
+                        <li><a href="CompraProdotto.html">Compra</a></li>
+                        <li><a href="DatiPersonaliCompratore.html">Dati personali</a></li>
+                        <li><a href="Carrello.html">Carrello</a></li>
+                        <li><a href="StoricoAcquisti.html">Cronologia</a></li>
+                        <li><a href="CercaVenditore.html">Venditori</a></li>
+                        <li class="currentPage">Ricarica</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                    </ul>
+            </div>
+            
+            <div id="leftSidebar"><!-- divisione barra sinistra -->
+                <ul> 
+                    <li class="leftItem" id="sections">Sezioni</li>
+                </ul>
+                <ul>
+                    <li><a href="HomeCliente.html">Home</a></li>
+                    <li><a href="CompraProdotto.html">Compra</a></li>
+                    <li><a href="DatiPersonaliCompratore.html">Dati personali</a></li>
+                    <li><a href="Carrello.html">Carrello</a></li>
+                    <li><a href="StoricoAcquisti.html">Cronologia</a></li>
+                    <li><a href="CercaVenditore.html">Venditori</a></li>
+                    <li class="currentPage">Ricarica</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                </ul>
+                <ul>
+                    <li class="leftItem" id="info" >Istruzioni</li><!-- informazioni sulla pagina corrente -->
+                    <li><h5>Effettua qui il <br/> tuo login al sito.</h5></li> 
+                </ul>
+            </div>
+                
+            
+            
+           <div id="content"><!-- divisione del corpo centrale della pagina -->
+               <ul class="icona_titolo">
+                   <li id="i_money">&nbsp;</li>
+                   <li> Ricarica Conto</li>
+               </ul>
+               <br>
+               <br>
+               
+                <h5>
+                    <form action="demo_form.asp" method="get">
+                        <label for="corto"><b>Nome del beneficiario: </b></label>
+                     <input type="text" name="beneficiaryName" id="beneficiaryName" /><!-- casella inserimento testo -->
+                     <br>
+                     
+                     <label for="corto"><b>Conto bancario: </b></label>
+                     <input type="text" name="bankAccount" id="bankAccount" /><!-- casella inserimento testo -->
+                     <br>
+                     
+                     <label for="corto"><b>IBAN: </b></label>
+                     <input type="text" name="IBAN" id="IBAN" /><!-- casella inserimento testo -->
+                     <br>
+                     
+                     <label for="corto"><b>Causale, ID Bonifico: </b></label>
+                     <input type="text" name="causal" id="causal" /><!-- casella inserimento testo -->
+                     <br>
+                       <input type="submit" value="Ricarica"><!-- pulsante di conferma ricarica conto -->
+                     
+                    </form>
+                    
+                    
+                    
+                </h5>
+       
+            </div>
+            
+            <div id="footer"><!-- divisione inferiore pagina-->
+                <a href="http://validator.w3.org/check/referer">Validatore Html</a>
+                <a href="http://jigsaw.w3.org/css-validator/check/refer">Validatore Css</a>​
+            </div>
+        </div>
+        
+        
+    </body>
+</html>

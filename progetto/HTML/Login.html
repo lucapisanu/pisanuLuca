@@ -1,0 +1,90 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>Pagina di benvenuto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name ="description" content="Pagina iniziale del sito, schermata login">
+        <meta name ="author" content="Luca Pisanu">
+        
+        <!-- link ai file css -->
+        <link rel="stylesheet" type="text/css" href="../CSS/general.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../CSS/fixed.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../CSS/stili.css" media="screen">
+    </head>
+    <body>
+        <div id="page"> <!-- divisone principale -->
+            
+            
+            <div id="header"> <!-- divisione parte superiore -->
+                
+                <div id="logo"> <!-- divisione logo e titolo -->
+                    
+                </div>
+            </div>
+            
+            <div id="menu"> <!-- divisone con i link alle sezioni -->
+                    
+                    <ul> <!-- lista dei link appartenenti alla sezione -->
+                        <li id="Login"><a href="Login.html">Login</a></li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                        <li id="Registrazione"><a href="Registrazione.html">Registrazione</a></li>
+                    </ul>
+            </div>
+                        
+            <div id="leftSidebar"><!-- divisione barra sinistra -->
+              <h2 class="leftItem">
+                <ul>
+                    <li id="sections">Sezioni</li>
+                    <li id="Login" class="currentPage"><a href="Login.html">Login</a></li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                    <li id="Registazione"><a href="Registrazione.html">Registrazione</a></li>
+                    <li id="info" >Istruzioni</li><!-- informazioni sulla pagina corrente -->
+                    <li><h5>Effettua qui il <br/> tuo login al sito</h5></li>  
+                </ul>
+              </h2>
+            </div>
+            
+            
+            <div id="content"><!-- divisione del corpo centrale della pagina -->
+            
+               
+                <h2>   Benvenuto su Autoshop </h2>
+                <p> Questo è un sito che si occupa della compravendita di automobili, perciò se 
+                    sei interessato a vendere o acquistare un auto non devi far altro che iscriverti al sito e poter
+                    sfruttare il sito per cogliere la tua occasione
+                </p>
+            <br>
+            <br>
+            <br>
+            <p> Inserisci i tuoi dati negli apposoti campi per accedere al sito altrimenti se non l'hai ancora fatto registrati. </p>
+            <br>
+            <br>
+            <br>
+            <h2><b>Login</b></h2>
+          
+            <form action="demo_form.asp" method="get"><!-- inserimento id e password per l'accesso  -->
+                <label for="corto">ID</label>
+                <input type="text" name="user" id="user" value="Username" />
+                <br>
+                <label for="pswd"> Password</label>
+                <input type="password" name="pswd" id="pswd" value="Oscurato" />
+                <br>
+                
+                <a id="login" href="Registrazione.html">Login</a> <!-- pulsante per accedere -->
+                
+            </form>
+            <p>Non sei ancora registrato? <a href="Registrazione.html">Registrati <i>ora</i></a></p>
+            </div>
+            
+            <div id="footer"><!-- divisone parte inferiore -->
+                
+                <a href="http://validator.w3.org/check/referer.html">Validatore HTML</a>
+                
+            </div>
+            
+        </div>
+        
+    </body>
+</html>

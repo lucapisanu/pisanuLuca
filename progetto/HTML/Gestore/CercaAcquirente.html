@@ -1,0 +1,132 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Area Amministrativa</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name ="description" content="Home della sezione Gestore">
+        <meta name ="author" content="Luca Pisanu">
+          <!-- link ai file css -->
+          <link rel="stylesheet" type="text/css" href="../../CSS/general.css" media="screen">
+          <link rel="stylesheet" type="text/css" href="../../CSS/fixed.css" media="screen">
+          <link rel="stylesheet" type="text/css" href="../../CSS/stili.css" media="screen">
+    </head>
+    <body>
+        <div id="page"> <!-- divisone principale -->
+       
+            <div id="header"> <!-- divisione parte superiore -->
+                <div id="logo"> <!-- divisione contente il logo e il titolo -->
+
+                </div>
+            </div>
+            
+            <div id="menu"><!-- divisone con i link alle sezioni -->
+                    
+                    <ul>
+                        <li><a href="HomeGestore.html">Home</a></li>
+                        <li class="currentPage">Acquirenti</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                        <li><a href="CercaVenditore.html">Venditori</a></li>
+                        <li><a href="SaldoGuadagni.html">Guadagni</a></li>
+                    </ul>
+            </div>
+                        
+            <div id="leftSidebar"><!-- divisione barra sinistra -->
+                <ul>
+                    <li >
+                        <h2 class="leftItem" id="sections">Sezioni</h2> 
+                    </li>
+                    <ul>
+                        <li><a href="HomeGestore.html">Home</a></li>
+                        <li class="currentPage">Acquirenti</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                        <li><a href="CercaVenditore.html">Venditori</a></li>
+                        <li><a href="SaldoGuadagni.html">Guadagni</a></li>
+                    </ul>
+                    <li >
+                        <h2 class="leftItem" id="info" >Istruzioni</h2><!-- informazioni sulla pagina corrente -->
+                        <li>
+                            <h5><p>Effettua qui il <br/> tuo login al sito.</p></h5> 
+                        </li>  
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            
+            <div id="content"><!-- divisione del corpo centrale della pagina -->
+                <ul class="icona_titolo">
+                    <li id="i_profilo">&nbsp;</li>
+                    <li> Cerca&nbsp;Acquirente </li>
+                </ul>
+                <br/>
+                <br/>
+                
+                <form action="demo_form.asp" method="get">
+                     <label for="corto">Nome e cognome</label>
+                     <input type="text" name="buyerName" id="buyerName"/><!-- vasella di inserimento del testo -->
+                     <input type="submit" value="Cerca"><!-- pulsante di attivazione della ricerca -->
+                     <br>
+
+                </form>
+                <br><hr>
+
+                <h4 id="venditoriLista">Lista acquirenti</h4>
+
+                <h5>
+                       <table><!-- tabella riempita con tutte le vetture in vendita -->
+                            <tr><!-- riga principale contenente tutti gli attributi -->
+                                <th>Cognome</th>
+                                <th>Nome</th>
+                                <th>Indirizzo</th>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Modifica</th>
+                            </tr>
+                             <tr>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                
+                            </tr>
+                            <tr class="evenRow"><!-- id per righe pari -->
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                <td>  </td>
+                                
+                            </tr>    
+
+                       </table>
+
+
+
+
+                </h5>
+
+       
+            </div>
+            
+           <div id="footer"><!-- divisione inferiore pagina-->
+                <a href="http://validator.w3.org/check/referer">Validatore Html</a>
+                <a href="http://jigsaw.w3.org/css-validator/check/refer">Validatore Css</a>​
+            </div>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,293 @@
+/* 
+    Document   : general
+    Author     : luca pisanu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#logo h1{
+    text-align: center; 
+    color: white;  
+    font-size: 30px;
+    font-family: Verdana, Arial;
+}
+
+#logo h3{
+    font-size: 15px;
+    color:#3D848F;
+    font-style: italic;
+}
+
+#logout a{
+    margin-left: 2%; 
+    font-weight: bold;
+    color: black;
+    font-family: Verdana, Normal; 
+    
+}
+
+#sections {
+    font-style: italic; 
+    color: #3D848F; 
+    font-weight: bold;  
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+#info{
+    font-style: italic; 
+    color: #3D848F; 
+    font-weight: bold;  
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+.input-form {
+    line-height: 3em;
+    border-top: 2px solid #3D848F;
+    font-style: italic;
+}
+
+.input-form li{
+    font-family: Arial, verdana;
+    font-size: 13px; 
+}
+
+.input-form input[type=text], .input-form input[type=password]{
+    display: inline-block;
+    width:60%;
+}
+
+.input-form input[type=submit], .input-form button{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    background-color: #3D848F;
+}
+
+.out-table{
+    border-collapse: collapse;
+}
+
+.none {
+    list-style: none;
+}
+
+#opz-prezzo li{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+table {
+    border: 2px double #3D848F;
+    border-collapse: collapse;
+    line-height: 1.3em;
+    max-width: 50%;
+    font-size: 13px;
+    margin: 6px;
+}
+
+th, td {
+    border-collapse: collapse;
+    border: 1px solid #3D848F;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #3D848F;
+    color: white;
+    font-weight: bold;
+}
+
+tr,td{
+    font-style: italic; 
+    background-color: white;
+    color: #3D848F;
+}
+
+#i_home {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/home.png');
+}
+
+#i_profilo {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/profile1.png');
+}
+
+#i_cerca {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/search.png');
+}
+
+#i_cerca-vend {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/search2.png');
+}
+
+#i_carrello {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/cart.png');
+}
+
+#i_money {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/money.png');
+}
+
+#i_conto {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/buy.png');
+}
+
+#i_auto {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/auto.png');
+}
+
+#i_aggiungi {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/aggiungi.png');
+}
+
+#i_vendite {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/vendite.png');
+} 
+
+#i_invendita {
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url('../Images/invendita.png');
+}
+
+/* pnl-profilo */
+#datiPersonali{
+    background-image: url('../Images/profile1.png');
+    background-repeat: no-repeat; 
+}
+
+#cercaAcquirente{
+    background-image: url('../Images/profile1.png');
+    background-repeat: no-repeat; 
+}
+
+
+/* pnl-cerca */
+#compraProdotto{
+    background-image: url('../Images/search.png');
+    background-repeat: no-repeat; 
+}
+
+/* pnl-venditore */
+#cercaVenditore{
+    background-image: url('../Images/search2.png');
+    background-repeat: no-repeat; 
+}
+
+/* pnl-carrello */
+#carrello{
+    background-image: url('../Images/cart.png');
+    background-repeat: no-repeat; 
+}
+
+#ricarica{
+    background-image: url('../Images/money.png');
+    background-repeat: no-repeat; 
+}
+
+#saldoGuadagni{
+    background-image: url('../Images/buy.png');
+    background-repeat: no-repeat; 
+}
+
+#cronologia{
+    background-image: url('../Images/buy.png');
+    background-repeat: no-repeat; 
+}
+
+#prodottiInVendita{
+    background-image: url('../Images/auto.png');
+    background-repeat: no-repeat; 
+}
+
+
+#vendiProdotto{
+    background-image: url('../Images/aggiungi.png');
+    background-repeat: no-repeat; 
+}
+
+#storicoVendite{
+    background-image: url('../Images/vendite.png');
+    background-repeat: no-repeat; 
+}
+
+
+
+.icona_titolo{
+padding-left: 0px;
+margin-bottom: 35px;  
+}
+
+.icona_titolo li {
+      display: inline; 
+      height: 30px;
+      width: 30px;
+      margin: 5px;
+      float:left;
+      font-size: 18px;
+      font-weight: bold; 	  
+}
+
+.icona_titolo ul{
+    display: inline;
+    float:left;
+}
+
+.panel li{
+      font-weight: bold; 
+      display: block; 
+      height: 80px;
+      width: 200px; 
+      margin: 7px;
+      position: relative;
+}
+
+.panel li a {
+   display: block;
+   position: absolute;
+   line-height: 120px;
+   height: 80px;
+   width: 200px; 
+   margin: 5px;
+   text-align: center;
+   padding-left: 100px;
+   font-size: 16px;
+   color: black;
+}
+
+.panel li a:link{
+    text-decoration: none;
+}
+
+ .panel li a:hover, .panel li a:active {  
+     font-size: 23px;
+     text-decoration: underline; 
+}
