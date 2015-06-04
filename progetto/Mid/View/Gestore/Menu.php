@@ -5,7 +5,8 @@ $CercaAcquirente = 0;
 $CercaVenditore = 0;
 $SaldoGuadagni = 0;
 
-switch ($vd->getSottoPagina()) { //controlla per vedere di che pagina si tratta in modo da impostare a currentPage solo il collegamento della pagina corrente
+switch ($vd->getSottoPagina()) { 
+    //serve a trovare la currentPage
     case 'CercaAcquirente':
         $CercaAcquirente = 'currentPage';
         break;

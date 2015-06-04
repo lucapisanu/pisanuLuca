@@ -8,7 +8,6 @@ include_once basename(__DIR__) . '/../Settings.php';
  * @author Luca Pisanu
  */
 class Db {
-    //put your code here
     
     private function __construct() {
         

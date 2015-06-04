@@ -5,8 +5,8 @@
 <br/>
 <br/>
 
-<h5><p>Benvenuto <?=$user->getNome()?></p>
-<p>Scegli a quale sezione accedere tra le seguenti.</p></h5>
+<h4><p>Benvenuto <?=$user->getNome()?></h4>
+<p>Scegli a quale sezione accedere tra le seguenti.</p>
 <ul class="panel"><!-- lista dei link alle varie sezioni -->
     <li><a id="cercaAcquirente"class="contentLink" href="Index.php?page=Gestore&subpage=CercaAcquirente">Cerca&nbsp;Acquirente</a></li>
     <li><a id="cercaVenditore" class="contentLink" href="Index.php?page=Gestore&subpage=CercaVenditore">Cerca&nbsp;Venditore</a></li>

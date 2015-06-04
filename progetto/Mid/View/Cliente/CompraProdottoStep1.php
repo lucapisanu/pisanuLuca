@@ -2,28 +2,18 @@
     <li id="i_cerca">&nbsp;</li>
     <li> Cerca&nbsp;Auto </li>
 </ul>
-<br>
-<br>
+<br><br>
 
-<h4>Ricerca Semplice</h4><!-- sezione ricerca per nome -->
+<h4>Ricerca Auto</h4>
 
-<h5>
-    <form action="demo_form.asp" method="get">
-            <label for="Modello">Nome modello</label>
-            <input type="text" name="Modello" id="Modello" /><!-- casella per l'inserimento del testo -->
-    </form>
-    <input type="submit" id="ricercaSemplice" value="Cerca"><!--pulsante di ricerca -->
-</h5>
-<h4>Ricerca Avanzata</h4><!-- sezione ricerca per caratteristiche -->
-<h5>
-
-    <div id="column1"> <!-- prima colonna di opzioni selezionabili -->
-
-        <label for="Produttore">Produttore</label>
-        <select name="Produttore"> <!-- menù a tendina dei produttori-->
-            <option value="nothing">   </option><!-- vuoto per non avere una selezione già preimpostata -->
+<form  method="post" action="Index.php?page=Cliente&subpage=CompraProdottoStep1<?= $vd->scriviToken('&')?>">        
+    <input type="hidden" name="command" value="ricercaAuto"/>   
+    
+    <label for="Produttore">Produttore</label>
+    <select name="Produttore"> <!-- menù a tendina dei produttori-->
+            <option value="">--Seleziona</option><!-- vuoto per non avere una selezione già preimpostata -->
             <option value="Abarth"> Abarth </option>
-            <option value="Alfa Romeo"> Afa Romeo </option>
+            <option value="Alfa Romeo"> Alfa Romeo </option>
             <option value="Aston Martin"> Aston Martin </option>
             <option value="Audi"> Audi </option>
             <option value="Bentley"> Bentley </option>
@@ -67,108 +57,103 @@
             <option value="Toyota"> Toyota </option>
             <option value="Volkswagen"> Volkswagen </option>
             <option value="Volvo"> Volvo </option>
-        </select>
+    </select>
+    
+    <br><br>
+    
+    <label for="Modello">Nome modello</label>
+    <input type="text" name="Modello" id="Modello"/><!-- casella di inserimento testo -->
+    
+    <br><br>
+     
+     <label for="Anno">Anno di Produzione maggiore di</label>
+            <input type="text" name="Anno" id="AnnoProduzione" /><!-- casella di inserimento testo -->
+     
+     <br><br>
+            
+     <label for="Prezzo">Prezzo minore di</label>
+            <input type="text" name="Prezzo" id="Prezzo"/><!-- casella di inserimento testo -->
+
+     <br><br> 
+     
+     <button name="command" type="submit" id="ricercaAuto" value="ricercaAuto">Cerca</button>
+</form>
+
+<br><br>
+     
+
+<h4>Lista&nbsp;auto</h4>
+<?php 
+$invendita = InvenditaFactory::instance()->caricaIdAuto();
+if ($invendita == 0 ){ ?>
+    <p>Non ci sono auto in vendita</p>
+<?php } else { ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Produttore</th>
+                <th>Nome modello</th>
+                <th>Accessori</th>
+                <th>Colori</th>
+                <th>Alimentazione</th>
+                <th>Classe emissioni</th>
+                <th>Anno produzione</th>
+                <th>Prezzo</th>
+                <th>Descrizione</th>
+                <th>Data registrazione</th>
+                <th>Aggiungi al carrello</th>
+                <th>Compra auto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            
+            foreach ($invendita as $in) {
+                $a = AutoFactory::instance()->caricaAuto($in->getIdAuto());  
+                
+                ?>
+                <tr <?= $i % 2 == 0 ? 'class="evenRow"' : '' ?>>
+                  
+                    <td> <?= $a->getProduttore()  ?> </td>
+                  
+                    <td> <?= $a->getModello() ?> </td>
+                   
+                    <td> <?= $a->getAccessori() ?> </td>
+               
+                    <td> <?= $a->getColore() ?> </td>
+                    
+                    <td> <?= $a->getAlimentazione() ?> </td>
+                    
+                    <td> <?= $a->getEmissioni() ?> </td>
+                    
+                    <td> <?= $a->getAnno() ?> </td>
+                    
+                    <td> <?= $a->getPrezzo() ?> </td>
+                    
+                    <td> <?= $a->getDescrizione() ?> </td>
+                    
+                    <td> <?= $in->getData() ?> </td>
+                    
+                    <td>
+                        <a href="Index.php?page=Cliente&subpage=CompraProdottoStep1&command=aggiungiCarrello&id_auto=<?=  $a->getId()?>">
+                            <img height="18px" width="18px" src="../Images/cart.png" alt="aggiungi" >
+                        </a>           
+                    </td>
+                    <td>
+                        <a href="Index.php?page=Cliente&subpage=CompraProdottoStep1&command=compra&id_auto=<?=  $a->getId()?>">
+                            <img height="18px" width="18px" src="../Images/aggiungi.png" alt="compra" >
+                        </a>           
+                    </td>
+       
+                </tr>
+                <?php                 
+                $i++;
+            }
+            ?>
+        </tbody>
+    </table>
+<?php } ?>
 
 
-
-        <form action="demo_form.asp" method="get">
-            <label for="Modello">Nome modello</label>
-            <input type="text" name="Modello" id="Modello" /><!-- casella di inserimento testo -->
-        </form>
-
-       <label for="Accessori">Accessori</label>
-        <div class="options"> <!-- classe per i blocchi di pulsanti selezionabili -->
-            <input type="checkbox" name="Accessories" value="airConditioning"> Climatizzatore <br>
-            <input type="checkbox" name="Accessories" value="carRadio"> Autoradio <br>
-            <input type="checkbox" name="Accessories" value="alloyWheels"> Cerchi in lega <br>
-            <input type="checkbox" name="Accessories" value="ESP"> ESP <br>
-            <input type="checkbox" name="Accessories" value="tintedGlasses"> Vetri Oscurati <br>
-            <input type="checkbox" name="Accessories" value="Navigator"> Navigatore <br>
-            <input type="checkbox" name="Accessories" value="ParkAssist"> Park Assist <br>
-            <input type="checkbox" name="Accessories" value="headrest"> Poggiatesta Posteriori<br>
-        </div>
-
-        <label for="Colori">Colori auto</label>
-        <div class="options"><!-- classe per i blocchi di pulsanti selezionabili -->
-            <select name="Color1">Primo Colore<!-- tendina per la scelta del primo colore -->
-                <option value="nothing">   </option><!-- vuoto per non avere una selezione già preimpostata -->
-                <option value="beige"> Beige </option>
-                <option value="black"> Nero </option>
-                <option value="blue"> Blu </option>
-                <option value="brown"> Marrone </option>
-                <option value="gold"> Oro </option>
-                <option value="green"> Verde </option>
-                <option value="grey"> Grigio </option>
-                <option value="orange"> Arancio </option>
-                <option value="red"> Rosso </option>
-                <option value="silver"> Argento </option>
-                <option value="purple"> Viola </option>
-                <option value="white"> Giallo </option>
-            </select>
-            <select name="Color2">Secondo Colore<!-- tendina per la scelta del secondo colore -->
-                <option value="nothing">   </option><!-- vuoto per non avere una selezione già preimpostata -->
-                <option value="beige"> Beige </option>
-                <option value="black"> Nero </option>
-                <option value="blue"> Blu </option>
-                <option value="brown"> Marrone </option>
-                <option value="gold"> Oro </option>
-                <option value="green"> Verde </option>
-                <option value="grey"> Grigio </option>
-                <option value="orange"> Arancio </option>
-                <option value="red"> Rosso </option>
-                <option value="silver"> Argento </option>
-                <option value="purple"> Viola </option>
-                <option value="white"> Giallo </option>
-            </select>
-
-            <!-- opzione tipo vernice -->
-            <br> <input type="radio" name="paintType" value="metallized">Metallizzato <br>
-            <input type="radio" name="paintType" value="opaque"> Opaco <br>
-        </div>
-
-    </div>  
-    <div id="column2"><!-- seconda colonna di opzioni selezionabili -->    
-        <label for="Alimentazione">Alimentazione</label>
-        <div class="options"><!-- classe per i blocchi di pulsanti selezionabili -->
-            <input type="radio" name="supplyType" value="petrol"> Benzina <br>
-            <input type="radio" name="supplyType" value="diesel"> Diesel <br>
-            <input type="radio" name="supplyType" value="petrol+methane"> Benzina+Metano <br>
-            <input type="radio" name="supplyType" value="hybrid"> Ibrida <br>
-        </div>
-
-
-        <label for="Emissioni">Classe emissioni</label>
-        <div class="options"><!-- classe per i blocchi di pulsanti selezionabili -->
-            <input type="radio" name="emissionsClass" value="Euro4"> Euro4 <br>
-            <input type="radio" name="emissionsClass" value="Euro5"> Euro5 <br>
-            <input type="radio" name="emissionsClass" value="Euro6"> Euro6 <br>
-        </div>
-
-
-        <form action="demo_form.asp" method="get">
-            <label for="Produzione">Anno di Produzione</label>
-            <input type="text" name="productionYear" id="AnnoProduzione" /><!-- casella di inserimento testo -->
-        </form>
-
-        <form action="demo_form.asp" method="get">
-            <label for="Prezzo">Prezzo</label>
-            <input type="text" name="price" id="price" /><!-- casella di inserimento testo -->
-        </form>
-
-         <input type="submit" id="ricercaAvanzata" value="Cerca"><!--pulsante di ricerca -->
-
-        <?php  if(isset($risulatatoRicerca)){    
-
-                //se trova qualcosa va allo step successivo
-        }
-        else { 
-
-            echo 'Nessun risultato trovato!';
-        }
-        ?>
-
-
-
-
-    </div></h5>
 

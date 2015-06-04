@@ -13,8 +13,6 @@ include_once basename(__DIR__) . '/../Settings.php';
     <head>
         <title><?= $vd->getTitolo() ?></title>
        
-       
-
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name ="author" content="Luca Pisanu">
         
@@ -22,6 +20,11 @@ include_once basename(__DIR__) . '/../Settings.php';
         <link rel="stylesheet" type="text/css" href="../CSS/general.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../CSS/fixed.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../CSS/stili.css" media="screen">
+        
+        <script type="javascript" src="http://code.jquery.com/jquery-2.1.1.min.js" /></script>
+        <script type="javascript" src="../js/lib/jquery.js" /></script>
+        <script type="javascript" src="../js/lib/jquery.validate.min.js" /></script>
+        <script type="javascript" src="../js/validazione.js" /></script>
         
     </head>
     
@@ -45,23 +48,22 @@ include_once basename(__DIR__) . '/../Settings.php';
             
             <div id="leftSidebar"><!-- divisione barra sinistra -->
                 <ul>
-                    <li >
+                    <li>
                         <h2 class="leftItem" id="sections"><p>Sezioni</p></h2> 
                     </li>
                         <?php
                         $menu = $vd->getMenuFile();
                         require "$menu";
                         ?>
-                    <li >
+                    <li>
                         <h2 class="leftItem" id="info" >Istruzioni</h2><!-- informazioni sulla pagina corrente -->
-                        <li>
-                            <?php
-                            $leftInfo = $vd->getLeftBarInfoFile();
-                            require "$leftInfo";
-                            ?> 
-                        </li>  
-                    </li>
-                    
+                    </li>    
+                    <li class="text-info">
+                        <?php
+                        $leftInfo = $vd->getLeftBarInfoFile();
+                        require "$leftInfo";
+                        ?> 
+                    </li>  
                 </ul>
             </div>
             

@@ -6,142 +6,116 @@
 */
 
 root{
-    display: block; 
+    display: block;
 }
 
-body{
-    background-image: url(../Images/background.png);
+
+
+body{ 
+    background-image: url(../Images/background.jpg); 
     background-repeat: no-repeat;
-    background-size: 100%; 
-    background-attachment:fixed;; 
+    background-size: 100%;
+    background-attachment:fixed;
     font-family: "Times New Roman", Arial, Verdana, sans-serif, Helvetica;
     font-size: 13px;  
 }
 
 #header{
-    background-color: rgba(61,132,143,0.2);
+    background-image: url(../Images/title.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    //background-color: rgba(255,255,255,0.6);
     color: black; 
-    border: 2px solid #3D848F; 
     border-radius: 6px;  
     vertical-align: middle;
-    background-image: url(../Images/car.jpg);
     background-position: center;
 }
 
 #menu{
-    display: block;
-    color: white;
-    font-family: Arial, Helvetica, serif;
-    font-size: 14px;
     line-height: normal;
     margin: 0px;
     white-space: nowrap;
 }
 
 #menu ul{     
-    left:20%;
     float: left; 
     list-style-type: none; 
     margin:3px;
-    padding:5px;
-    position: relative;
     text-decoration:none;
 }
 
 #menu li {
-    font-size:12px;
+    font-size:15px;
     float:left; 
     padding: 2px;
-    margin-left: 18px;
+    margin-left: 10px;
     text-decoration:none;
 }
 
 #menu a:link, #menu a:visited{
-    font-weight: bold;
+    font-weight:100;
     color: black;
-    font-family: Verdana, Normal;
+    text-transform: uppercase;
+    font-family:'Times New Roman', Groove, Normal;
     text-decoration:none;
     padding: 3px;  
 
 }
 
 #menu a:hover, #menu a:active{
-    color: #3D848F;
-    font-size: 15px;
-    text-decoration:none;
-    white-space: nowrap;
-
+    font-weight: bold; 
 }
 
 
 #leftSidebar{ 
-   background-color: rgba(61,132,143,0.2); 
-   border: 2px solid #3D848F; 
-   border-top-left-radius: 6px;
-   border-bottom-left-radius: 6px;
+   background-color: rgba(0,0,0,0.1); 
+   border-radius: 6px;
+   padding: 0 auto;
 }
 
 #leftSidebar ul{
-   color: #3D848F;
-   padding-left: 3%; 
-   padding-right: 3%;  
-   margin-top: 4%;
-   margin-right: 4%;
-   text-decoration:none;
+   color: black;
+   padding: 2px;
+   margin-left: 2px;
    list-style-type: none;
+   
 }
 
 #leftSidebar li{
-   padding-left: 4%; 
-   padding-right:2% ; 
-   margin-top: 10%;
-   margin-bottom: 10%;
+   text-decoration: none;
+   padding-left: 3px;
 }
 
 #leftSidebar a:link, #leftSidebar a:visited{
-    font-size: 12px;
+    font-size: 15px;
     color: black;
     text-align: left;
-    font-family: Verdana, Normal; 
-    text-decoration:none;  
+    font-family:  'Times New Roman', Groove, Normal; 
+    text-decoration: none;  
 }
 
 #leftSidebar a:hover, #leftSidebar a:active{
-    color: #3D848F;
-    font-size: 15px;
+    font-weight: bold;
 } 
 
 .leftItem{
-    font-style: italic; 
-    color: #3D848F; 
-    font-weight: bold;  
+    color: black; 
     text-transform: uppercase;
-    margin-top: 50px;
 }
 
 #currentPage{
-    font-size: 14px; 
-    color: black;
-    font-style: italic; 
-    font-family: Groove;
-    text-decoration: underline;
+    border-bottom: 1px solid black; 
 }
 
-.currentPage{
-    font-size: 14px; 
-    color: black;
-    font-style: italic; 
-    font-family: Groove;
-    text-decoration: underline;
+#leftSidebar #currentPage{
+    font-size: 13px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black; 
 }
 
 #content{  
-    background-color: rgba(61,132,143,0.2);
-    border: 2px solid #3D848F;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    padding-top: 13px;
-    padding-left: 5%;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 6px;
 }
 
 
@@ -161,14 +135,22 @@ label{
 }
 
 #footer {
-    background-color: rgba(61,132,143,0.2);
-    border-radius: 6px;
-    border: 2px solid #3D848F;
+    background-color: rgba(0,0,0,0.1);
     color:black;
-    font-family: arial;
+    font-family: Arial;
     vertical-align: middle;
     padding-left: 20px; 
 }
 
+#footer a:link, #footer a:visited{
+    font-weight: bold;
+    font-size: 9px;
+    color: black;
+    text-align: left;
+    font-family: Verdana, Normal; 
+    text-decoration:underline;  
+}
 
-
+#footer a:hover, #footer a:active{
+    font-size: 11px;
+} 

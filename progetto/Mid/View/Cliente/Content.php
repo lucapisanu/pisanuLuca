@@ -1,11 +1,8 @@
 <?php
-switch ($vd->getSottoPagina()) { //controlla che contenuto della pagina deve caricare
+//controlla quale contenuto della pagina deve caricare
+switch ($vd->getSottoPagina()) { 
     case 'Carrello':
         include 'Carrello.php';
-        break;
-
-    case 'CercaVenditore':
-        include 'CercaVenditore.php';
         break;
     
     case 'CompraProdottoStep1':

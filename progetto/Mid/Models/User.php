@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Classe che rappresenta un generico utente del sistema
+ * Classe che rappresenta una generico utente del sistema
+ * 
+ * @author Luca Pisanu
  */
 class User{
 
@@ -30,34 +32,24 @@ class User{
      * @var string */
     private $cognome;
     
-    /**
-     * Via dell'abitazione dell'utente
-     * @var string
-     */
+     /* Via dell'abitazione dell'utente
+     * @var string*/
     private $via;
     
-    /**
-     * Numero civico dell'abitazione. Consideriamo interi, quindi non 1a, 1b ecc.
-     * @var int 
-     */
+    /* Numero civico dell'abitazione.
+     * @var int */
     private $numeroCivico;
     
-    /**
-     * Citta di residenza dell'utente. Anche qui permettiamo l'inserimento
-     * di citta' anche inventate
-     * @var string
-     */
+    /* Citta di residenza dell'utente.
+     * @var string */
     private $citta;
     
-    /**
-     * Provincia di residenza dell'utente
-     * @var string
-     */
+    /* Provincia di residenza dell'utente
+     * @var string */
     private $provincia;
-    /**
-     * Cap dell'utente. Lo vogliamo max di cinque cifre
-     * @var int 
-     */
+    
+    /* Cap dell'utente.
+     * @var int */
     private $cap;
     
     /* variabile contenente il ruolo 
@@ -68,13 +60,16 @@ class User{
      * @var int */
     private $id;
     
-    //costante che definisce il ruolo di Gestore
+    /* costante che gestisce il ruolo del gestore
+     * @const int */
     const Gestore = -1;
     
-    //costante che definisce il ruolo di Cliente
+    /* costante che gestisce il ruolo del cliente
+     * @const int */
     const Cliente = 1;
     
-    //costante che definisce il ruolo di Commerciante
+    /* costante che gestisce il ruolo del commerciante
+     * @const int */
     const Commerciante = 2;
     
     
@@ -172,12 +167,8 @@ class User{
      * correttamente, false altrimenti
      */
     public function setTelefono($telefono) {
-        $intVal = filter_var($telefono, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-        if (isset($intVal)) {
-            $this->telefono = $intVal;
-            return true;
-        }
-        return false;
+        $this->telefono = $telefono;
+        return true;
     }
  
     /**
@@ -213,13 +204,9 @@ class User{
      * @return boolean true se il valore e' ammissibile ed e' stato aggiornato
      * correttamente, false altrimenti
      */
-    public function setNumeroCivico($civico) {
-        $intVal = filter_var($civico, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-        if (isset($intVal)) {
-            $this->numeroCivico = $intVal;
+    public function setNumeroCivico($civico) {         
+        $this->numeroCivico = $civico;
             return true;
-        }
-        return false;
     }
  
     /**
@@ -304,6 +291,7 @@ class User{
         // utilizzo la funzione filter var specificando un'espressione regolare
         // che implementa la validazione personalizzata
         if (!filter_var($username, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/[a-zA-Z]{5,}/')))) {
+            echo 'La username deve avere almeno 5 caratteri e solo valori: a-z A-Z';
             return false;
         }
         $this->username = $username;

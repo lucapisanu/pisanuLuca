@@ -3,116 +3,60 @@
     <li> Auto&nbsp;in&nbsp;vendita </li>
 </ul>
 <br/>
-<br/>
 
-<h5>
-        <?php
-             /*setta il contatore delle righe della tabella in base alle vetture presenti nell'array
-              *(se di uno stesso prodotto ci sono due copie lo conterà solo una volta)*/
-             $i = count($user->getLista());
-             
-             //se non ci sono auto nella lista
-             if($i==0){
-                 
-                 echo "Non ci sono auto in vendita";
-             }
-             else{
-                 ?>
-                 <table><!-- tabella riempita con tutte le vetture in vendita -->
-                    <tr><!-- riga principale contenente tutti gli attributi -->
-                        <th>Produttore</th>
-                        <th>Nome modello</th>
-                        <th>Accessori</th>
-                        <th>Colori</th>
-                        <th>Alimentazione</th>
-                        <th>Classe emissioni</th>
-                        <th>Anno produzione</th>
-                        <th>Prezzo</th>
-                        <th>Data registrazione</th>
-                        <th>Descrizione</th>
-                        <th>Esemplari</th>
-                    </tr>
-                 <?php
-                //fino a quando ci sono vetture da stampare
-                while ($i>0){
-
-                    //se la riga è pari
-                    if($i%2==0){
-
-                        ?><tr class="evenRow"><!-- id per righe pari --><?php       
-                    }
-                    else{
-
-                        ?><tr><?php       
-
-                    }
-                ?>  
-                    <!--invoca il metodo per la restituzione del produttore dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getProduttore()  ?> </td>
-                    <!--invoca il metodo per la restituzione del modello dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getModello() ?> </td>
-                    <!--invoca il metodo per la restituzione degli accessori dalla lista delle auto del commerciante in questione-->
-                    <td> 
-                        <?php
-                            $j = count($user->getLista()[$i-1]->getAccessori()); // imposta un contatore per il numero di accessori registrati
-                            $k = 0;//inizializza il contatore di stampa a zero
-                            while ($k < $j){ //fino a quando non ha considerato tutti gli accessori
-
-                                if ($k!=0){
-                                   ?>
-                                        <br>
-                                   <?php 
-                                }
-
-                                echo $user->getLista()[$i-1]->getAccessori()[$k];//spampa l'accessorio corrente ($k)
-                                $k++;
-                            }
-                        ?>
+<?php 
+if (InvenditaFactory::instance()->autoPerCommerciante($user->getId()) == 0 ){ ?>
+    <p>Non hai nessuna auto in vendita</p>
+<?php } else { ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Produttore</th>
+                <th>Nome modello</th>
+                <th>Accessori</th>
+                <th>Colori</th>
+                <th>Alimentazione</th>
+                <th>Classe emissioni</th>
+                <th>Anno produzione</th>
+                <th>Prezzo</th>
+                <th>Descrizione</th>
+                <th>Data registrazione</th>
+                <th>Elimina Auto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            $invendita = InvenditaFactory::instance()->caricaInvendita($user->getId()); 
+            
+            foreach ($invendita as $in) {
+                $a = AutoFactory::instance()->caricaAuto($in->getIdAuto());  
+                
+                ?>
+                <tr <?= $i % 2 == 0 ? 'class="evenRow"' : '' ?>>
+                  
+                    <td> <?= $a->getProduttore()  ?> </td>
+                    <td> <?= $a->getModello() ?> </td>
+                    <td> <?= $a->getAccessori() ?> </td>
+                    <td> <?= $a->getColore() ?> </td>
+                    <td> <?= $a->getAlimentazione() ?> </td>
+                    <td> <?= $a->getEmissioni() ?> </td>
+                    <td> <?= $a->getAnno() ?> </td>
+                    <td> <?= $a->getPrezzo() ?> </td>
+                    <td> <?= $a->getDescrizione() ?> </td>
+                    <td> <?= $in->getData() ?> </td>
+                    
+                    <td>
+                        <a href="Index.php?page=Commerciante&subpage=ProdottiInVendita2&command=EliminaAuto&id_auto=<?=  $a->getId()?>">
+                            <img  src="../Images/elimina.png" alt="Elimina" >
+                        </a>           
                     </td>
-                    <td> 
-                        <?php
-                            $j = count($user->getLista()[$i-1]->getColori()); // imposta un contatore per il numero di accessori registrati
-                            $k = 0;//inizializza il contatore di stampa a zero
-                            while ($k < $j){ //fino a quando non ha considerato tutti i colori
-
-                                //se non si tratta del primo elemento vai a capo
-                                if ($k!=0){
-                                   ?>
-                                         <br>
-                                   <?php 
-                                }
-
-                                   //stampa il colore o il tipo di vernice
-                                    echo $user->getLista()[$i-1]->getColori()[$k] ;//spampa l'accessorio corrente ($j)
-
-                                $k++;
-                            }
-                        ?>
-                    </td>
-                    <!--invoca il metodo per la restituzione dell'alimentazione dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getAlimentazione() ?> </td>
-                    <!--invoca il metodo per la restituzione del tipo di emissioni dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getEmissioni() ?> </td>
-                    <!--invoca il metodo per la restituzione dell'anno di produzione dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getAnno() ?> </td>
-                    <!--invoca il metodo per la restituzione del prezzo dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getPrezzo()?> <?= htmlentities("€")?> </td>
-                    <!--invoca il metodo per la restituzione della data-->
-                    <td> <?= $user->getLista()[$i-1]->getData() ?> </td>
-                    <!--invoca il metodo per la restituzione della descrizione dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getDescrizione() ?> </td>
-                     <!--invoca il metodo per la restituzione del numero di copie dalla lista delle auto del commerciante in questione-->
-                    <td> <?= $user->getLista()[$i-1]->getCopie() ?> </td>
-                    </tr>
-                    <?php $i--; 
-
-                }
-             }
-        ?>
-
+       
+                </tr>
+                <?php                 
+                $i++;
+            }
+            ?>
+        </tbody>
     </table>
-
-
-
-
-</h5>
+<?php } ?>

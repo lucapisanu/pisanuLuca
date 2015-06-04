@@ -45,3 +45,4 @@ switch ($vd->getSottoPagina()) { //controlla per vedere di che pagina si tratta 
     <li id="<?=$ProdottiInVendita?>"><a href="Index.php?page=Commerciante&subpage=ProdottiInVendita<?= $vd->scriviToken('&')?>">In vendita</a></li>
     <li id="<?=$StoricoVendite?>"><a href="Index.php?page=Commerciante&subpage=StoricoVendite<?= $vd->scriviToken('&')?>">Cronologia</a></li>
 </ul>
+

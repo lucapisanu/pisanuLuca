@@ -4,7 +4,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
         ?>
 
             <h5>
-                <p>
+                <p class="text-info">
                    In questa sezione potrai selezionare uno dei clienti dalla 
                    lista oppure cercarlo per nome ed operare come fossi il suddetto.
                 </p>
@@ -17,7 +17,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
         ?>
 
             <h5>
-                <p>
+                <p class="text-info">
                    In questa sezione potrai selezionare uno dei venditori dalla 
                    lista oppure cercarlo per nome ed operare come fossi il suddetto.
                 </p>
@@ -30,7 +30,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
          ?>
 
             <h5>
-                <p>
+                <p class="text-info">
                     In questa sezione potrai verificare a quanto ammonta il tuo
                     guadagno derivato da tutti gli acquisti dei clienti. 
                 </p>
@@ -43,7 +43,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
          ?>
 
             <h5>
-                <p>
+                <p class="text-info">
                    Benvenuto nella sezione Gestre. Clicca su una delle 
                    sezioni per iniziare la tua attività di amministrazione.
                 </p>
@@ -56,7 +56,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
         ?>
 
             <h5>
-                <p>
+                <p class="text-info">
                    Benvenuto nella sezione Gestore. Clicca su una delle 
                    sezioni per iniziare la tua attività di amministrazione.
                 </p>

@@ -44,26 +44,22 @@ class GestoreController extends BaseController {
                     case 'CercaAcquirente':
                         $vd->setSottoPagina('CercaAcquirente');
                         $url = 'Index.php?page=Gestore&subpage=CercaAcquirente';
-                        $this->mostraHomeUtente($vd);
+                     
                         break;
                     
                     case 'CercaVenditore':
                         $vd->setSottoPagina('CercaVenditore');
                         $url = 'Index.php?page=Gestore&subpage=CercaVenditore';
-                        $this->mostraHomeUtente($vd);
+                    
                         break;
                     
                     case 'SaldoGuadagni':
                         $vd->setSottoPagina('SaldoGuadagni');
-                        $this->mostraHomeUtente($vd);
+            
                         break;
-
-                     
                   }
-
             }
         
-            
             // gestione dei comandi inviati dall'utente
             if (isset($request["command"])) {
                 
@@ -81,14 +77,11 @@ class GestoreController extends BaseController {
                             
                             // ottiene l'identificatore dell'utente
                             $index = str_replace('obj', '', $request[BaseController::impersonato]);
-
                             //controlla quale utente deve impersonare
                             $sessionIndex = $request[BaseController::impersonato];
                             $s = UserFactory::getPerId($index);
-
                             //rimanda al metodo per impersonare il commerciante in questione
                             if ($this->impersonaUtente(
-
                                             $s, 'Commerciante', 'Home', $sessionIndex, $session)) {
 
                                 return;

@@ -9,7 +9,7 @@
 <br>
 <br>
 <br>
-<form method="post" action="Index.php?page=Login">
+<form method="post" id="formLogin" action="Index.php?page=Login">
     <input type="hidden" name="command" value="Login"/>
     <label for="user">Username:</label>
     <input type="text" name="user" id="user"/>

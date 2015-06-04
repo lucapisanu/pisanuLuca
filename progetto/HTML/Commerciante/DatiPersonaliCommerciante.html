@@ -16,12 +16,12 @@ and open the template in the editor.
               
     </head>
     <body>
-        <div id="page"> <!-- divisone principale -->
+        <div id="page">
 
        
-            <div id="header"> <!-- divisione parte superiore -->
-                <div id="logo"> <!-- divisione contente il logo e il titolo -->
-
+            <div id="header"> 
+                <div id="logo"> 
+                       <h1><b>AutoShop</b></h1>
                 </div>
                 
             </div>
@@ -31,32 +31,32 @@ and open the template in the editor.
                     <ul>
                         <li><a href="HomeCommerciante.html">Home</a></li>
                         <li><a href="VendiProdotto.html">Vendi</a></li>
-                        <li class="currentPage">Dati personali</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                        <li class="currentPage">Dati personali</li>
                         <li><a href="ProdottiInVendita.html">In vendita</a></li>
                         <li><a href="StoricoVendite.html">Cronologia</a></li>
                     </ul>
             </div>
                         
-            <div id="leftSidebar"><!-- divisione barra sinistra -->
+            <div id="leftSidebar">
                 <ul> 
                     <li class="leftItem" id="sections">Sezioni</li>
                 </ul>
                 <ul>
                     <li><a href="HomeCommerciante.html">Home</a></li>
                     <li><a href="VendiProdotto.html">Vendi</a></li>
-                    <li class="currentPage">Dati personali</li><!-- id usato per riconoscere la pagina attualmente in visita -->
+                    <li class="currentPage">Dati personali</li>
                     <li><a href="ProdottiInVendita.html">In vendita</a></li>
                     <li><a href="StoricoVendite.html">Cronologia</a></li>
                 </ul>
                 <ul>
-                    <li class="leftItem" id="info" >Istruzioni</li><!-- informazioni sulla pagina corrente -->
+                    <li class="leftItem" id="info" >Istruzioni</li>
                     <li><h5>Effettua qui il <br/> tuo login al sito.</h5></li>  
                 </ul>
             </div>
                 
             
             
-            <div id="content"><!-- divisione del corpo centrale della pagina -->
+            <div id="content">
                 <ul class="icona_titolo">
                     <li id="i_profilo">&nbsp;</li>
                     <li> Profilo </li>
@@ -74,8 +74,6 @@ and open the template in the editor.
 
                 <h4 id="datiPersonaliModifica">Modifica Dati personali</h4>
 
-
-                <h5>
                     <form  method="post" action="Index.php?page=Commerciante&subpage=DatiPersonaliCommerciante<?= $vd->scriviToken('&')?>">
 
                         <input type="hidden" name="command" value="DatiPersonali"/>
@@ -98,11 +96,7 @@ and open the template in the editor.
                         <input type="submit" value="Modifica"/><!-- pulsante di attivazione delle modifiche -->
                      <br>
                     </form>
-
-
-
-
-                </h5>       
+      
        
             </div>
             

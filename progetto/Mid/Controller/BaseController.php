@@ -3,9 +3,13 @@
 /*altre classi da includere*/
 include_once basename(__DIR__) . '/../View/ViewDescriptor.php';
 include_once basename(__DIR__) . '/../Models/User.php';
-include_once basename(__DIR__) . '/../Models/Cliente.php';
-include_once basename(__DIR__) . '/../Models/Auto.php';
 include_once basename(__DIR__) . '/../Models/UserFactory.php';
+include_once basename(__DIR__) . '/../Models/Auto.php';
+include_once basename(__DIR__) . '/../Models/AutoFactory.php';
+include_once basename(__DIR__) . '/../Models/Cliente.php';
+include_once basename(__DIR__) . '/../Models/Commerciante.php';
+include_once basename(__DIR__) . '/../Models/Acquisti.php';
+include_once basename(__DIR__) . '/../Models/AcquistiFactory.php';
 include_once basename(__DIR__) . '/../Settings.php';
 
 
@@ -31,7 +35,7 @@ class BaseController {
 
     // imposta la pagina
     $vd->setPagina($request['page']);
-
+    
     // imposta il token per l'impersonificazione di un utente
     $this->setImpToken($vd, $request);
 
@@ -40,41 +44,52 @@ class BaseController {
         
         switch ($request["command"]) {
             
-            case 'Login':
-                if (isset($request['user'])){ //se è stato inserito un valore per la username
-
-                $username = $request['user']; //imposta la username con quel valore
+            case "Login":
+                //se è stato inserito un valore per la username
+                if (isset($request['user'])){ 
+                //imposta la username con quel valore
+                $username = $request['user']; 
             }
             //altrimenti lascia una stringa vuota
             else{
-
                 $username = ''; 
             }
-
-            if (isset($request['password'])){ //se è stato inserito un valore per la password
-
-                $password = $request['password']; //imposta la pasword con quel valore
+            //se è stato inserito un valore per la password
+            if (isset($request['password'])){ 
+                //imposta la pasword con quel valore
+                $password = $request['password']; 
             }
             //altriementi lascia una stringa vuota
             else{
-
                 $password = ''; 
             }
-
             //richiama la funzione per loggare l'utente
             $this->login($vd, $username, $password);
-
             // se si riesce nel loggin viene impostata una variabile  utilizzata poi nel momento della vista
             if ($this->loggato())
             $user = $_SESSION[self::user];
             break;
             
-            //mostra la pagina di login nel caso la richiesta non sia case 'Login'
+            case "Registrazione": 
+                     $msg = array();
+                     if ($request['Ruolo'] == 'Commerciante'){
+                         $user = new Commerciante();
+                        $this->salvaUtente($user, $request, $msg);
+                     }else{
+                         $user = new Cliente();
+                         $this->salvaUtente($user, $request, $msg);
+                     }
+                     $this->creaFeedbackUtente($msg, $vd, "Utente registrato");
+                     $this->mostraPaginaLogin();  
+            break;
+            
+            //mostra la pagina di login nel caso la richiesta non sia case 'Login' o 'Registrazione'
             default : $this->mostraPaginaLogin();
         }
     } 
     else {
-        if ($this->loggato()) { // se si riesce nel loggin
+        // se si riesce nel loggin
+        if ($this->loggato()) { 
 
             //viene impostata una variabile  utilizzata poi nel momento della vista
             $user = $_SESSION[self::user];
@@ -115,6 +130,17 @@ class BaseController {
         $vd->setMenuFile(basename(__DIR__) . '/../View/Login/Menu.php');
         $vd->setLeftBarInfoFile(basename(__DIR__) . '/../View/Login/LeftBarInfo.php');
         $vd->setContentFile(basename(__DIR__) . '/../View/Login/Content.php');
+    }
+    
+            
+    /* metodo per l'impostazione della masterpage alla visualizzazione della schermata di registrazione
+     * @param ViewDescriptor $vd - descrittore della vista*/
+    protected function mostraPaginaRegistrazione($vd) {
+        $vd->setTitolo("AutoShop -> Registrazione");
+        $vd->setLogoFile(basename(__DIR__) . '/../View/Login/Logo.php');
+        $vd->setMenuFile(basename(__DIR__) . '/../View/Login/Menu.php');
+        $vd->setLeftBarInfoFile(basename(__DIR__) . '/../View/Login/LeftBarInfo.php');
+        $vd->setContentFile(basename(__DIR__) . '/../View/Login/Registrazione.php');
     }
 
     /* metodo per l'impostazione della masterpage alla visualizzazione dell'home del cliente
@@ -189,7 +215,7 @@ class BaseController {
     protected function login($vd, $username, $password) {
         
         //caricamento dei dati dalla classe utente
-        $user = UserFactory::LoadUtente($username, $password);
+        $user = UserFactory::instance()->LoadUtente($username, $password);
         
         //se i dati inseriti sono giusti
         if (isset($user) && $user->esiste()) { 
@@ -330,7 +356,7 @@ class BaseController {
             //se l'array dei messaggi non è voto quindi c'è qualche errore
             if (!empty($msg)) {
 
-                $error = "";
+                $error = "Si sono verificati i seguenti errori: <br>";
 
                 foreach ($msg as $m) {
                     $error = $error . '- ' . $m . "<br><br>";

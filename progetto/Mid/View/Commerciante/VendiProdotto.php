@@ -1,16 +1,17 @@
 <ul class="icona_titolo">
     <li id="i_aggiungi">&nbsp;</li>
-    <li> Vendi&nbsp;Automobile </li>
+    <li> Vendi&nbsp;Auto </li>
 </ul>
 <br/>
-<br/>
+<br>
 
-<h5>
-        <form  method="post" action="Index.php?page=Commerciante&subpage=VendiProdotto<?= $vd->scriviToken('&')?>">        
-        <input type="hidden" name="command" value="RegistraAuto"/>
-        <label for="Produttore">Produttore</label>
-        <select name="Produttore"> <!-- menù a tendina dei produttori-->
-            <option>   </option><!-- vuoto per non avere una selezione già preimpostata -->
+<form  method="post" action="Index.php?page=Commerciante&subpage=VendiProdotto<?= $vd->scriviToken('&')?>">        
+
+    <input type="hidden" name="command" value="RegistraAuto"/>   
+    
+    <label for="Produttore">Produttore</label>
+    <select name="Produttore"> <!-- menù a tendina dei produttori-->
+            <option value="">--Seleziona</option><!-- vuoto per non avere una selezione già preimpostata -->
             <option value="Abarth"> Abarth </option>
             <option value="Alfa Romeo"> Alfa Romeo </option>
             <option value="Aston Martin"> Aston Martin </option>
@@ -56,12 +57,16 @@
             <option value="Toyota"> Toyota </option>
             <option value="Volkswagen"> Volkswagen </option>
             <option value="Volvo"> Volvo </option>
-        </select>
-        
-        <label for="Modello">Nome modello</label>
-        <input type="text" name="Modello" id="Modello"/><!-- casella di inserimento testo -->
-        
-       <label for="Accessori">Accessori</label>
+    </select>
+    
+    <br><br>
+    
+    <label for="Modello">Nome modello</label>
+    <input type="text" name="Modello" id="Modello"/><!-- casella di inserimento testo -->
+    
+    <br><br>
+    
+    <label for="Accessori">Accessori</label><br>
             <input type="checkbox" name="Accessori[]" value="Climatizzatore"> Climatizzatore <br>
             <input type="checkbox" name="Accessori[]" value="Autoradio"> Autoradio <br>
             <input type="checkbox" name="Accessori[]" value="Cerchi in lega"> Cerchi in lega <br>
@@ -70,73 +75,77 @@
             <input type="checkbox" name="Accessori[]" value="Navigatore"> Navigatore <br>
             <input type="checkbox" name="Accessori[]" value="Park Assist"> Park Assist <br>
             <input type="checkbox" name="Accessori[]" value="Poggiatesta Posteriori"> Poggiatesta Posteriori<br>
-
-        <label for="Colori">Colori auto</label>
-            <select name="Colori1">Primo Colore<!-- tendina per la scelta del primo colore -->
-                <option>   </option><!-- vuoto per non avere una selezione già preimpostata -->
-                <option value="Beige"> Beige </option>
-                <option value="Nero"> Nero </option>
-                <option value="Blu"> Blu </option>
-                <option value="Marrone"> Marrone </option>
-                <option value="Oro"> Oro </option>
-                <option value="Verde"> Verde </option>
-                <option value="Grigio"> Grigio </option>
-                <option value="Arancio"> Arancio </option>
-                <option value="Rosso"> Rosso </option>
-                <option value="Argento"> Argento </option>
-                <option value="Viola"> Viola </option>
-                <option value="Giallo"> Giallo </option>
-            </select>
-
-            <select name="Colori2">Secondo Colore<!-- tendina per la scelta del secondo colore -->
-                <option>   </option><!-- vuoto per non avere una selezione già preimpostata -->
-                <option value="Beige"> Beige </option>
-                <option value="Nero"> Nero </option>
-                <option value="Blu"> Blu </option>
-                <option value="Marrone"> Marrone </option>
-                <option value="Oro"> Oro </option>
-                <option value="Verde"> Verde </option>
-                <option value="Grigio"> Grigio </option>
-                <option value="Arancio"> Arancio </option>
-                <option value="Rosso"> Rosso </option>
-                <option value="Argento"> Argento </option>
-                <option value="Viola"> Viola </option>
-                <option value="Giallo"> Giallo </option>
-            </select>
-        
-            <!-- opzione tipo vernice -->
-            <br> <input type="radio" name="Colori3" value="Metallizato">Metallizzato <br>
-            <input type="radio" name="Colori3" value="Opaco"> Opaco <br>
-      
-
      
+    <br><br>
     
-        <label for="Alimentazione">Alimentazione</label>
-            <input type="radio" name="Alimentazione" value="Benzina"> Benzina <br>
-            <input type="radio" name="Alimentazione" value="Diesel"> Diesel <br>
-            <input type="radio" name="Alimentazione" value="Benzina+Metano"> Benzina+Metano <br>
-            <input type="radio" name="Alimentazione" value="Ibrida"> Ibrida <br>
+    <label for="Colore1">Colore</label>
+    <select name="Colore1">
+        <option value="">--Seleziona</option>
+                <option value="Arancio"> Arancione </option>
+                <option value="Argento"> Argento </option>
+                <option value="Beige"> Beige </option>
+                <option value="Blu"> Blu </option>
+                <option value="Giallo"> Giallo </option>
+                <option value="Grigio"> Grigio </option>
+                <option value="Marrone"> Marrone </option>
+                <option value="Nero"> Nero </option>
+                <option value="Oro"> Oro </option>
+                <option value="Rosso"> Rosso </option>
+                <option value="Verde"> Verde </option>
+                <option value="Viola"> Viola </option>
+    </select>
+       
+    <br><br>
+    
+    <label for="Colore2">Vernice</label>
+    <select name="Colore2">
+        <option value="">--Seleziona</option>
+            <option value="Metallizato">Metallizzato <br>
+            <option value="Opaco"> Opaco <br>
+    </select>
+    
+    <br><br>
+    
+    <label for="Alimentazione">Alimentazione</label>
+    <select name="Alimentazione">
+        <option value="">--Seleziona</option>
+            <option value="Benzina"> Benzina 
+            <option value="Benzina+Metano"> Benzina+Metano 
+            <option value="Diesel"> Diesel 
+            <option value="Ibrida"> Ibrida 
+    </select>
+    
+    <br><br>
             
-        
-        <label for="Emissioni">Classe emissioni</label>
-            <input type="radio" name="Emissioni" value="Euro4"> Euro4 <br>
-            <input type="radio" name="Emissioni" value="Euro5"> Euro5 <br>
-            <input type="radio" name="Emissioni" value="Euro6"> Euro6 <br>
-            
-        <label for="Produzione">Anno di Produzione</label>
+    <label for="Emissioni">Classe emissioni</label>
+    <select name="Emissioni">
+        <option value="">--Seleziona</option>
+            <option value="Euro1"> Euro1 
+            <option value="Euro2"> Euro2 
+            <option value="Euro3"> Euro3
+            <option value="Euro4"> Euro4 
+            <option value="Euro5"> Euro5 
+            <option value="Euro6"> Euro6         
+    </select>
+      
+     <br><br> 
+     
+     <label for="Anno">Anno di Produzione</label>
             <input type="text" name="Anno" id="AnnoProduzione" /><!-- casella di inserimento testo -->
-
-        <label for="Prezzo">Prezzo</label>
+     
+     <br><br>
+            
+     <label for="Prezzo">Prezzo</label>
             <input type="text" name="Prezzo" id="Prezzo"/><!-- casella di inserimento testo -->
-            
-         <label for="Copie">Numero articoli</label>
-            <input type="text" name="Copie" id="Copie"/><!-- casella di inserimento testo -->
-            
-         <label for="DescrizioneArticolo">Descrizione articolo</label>
-            <textarea rows="5" cols="52" name="DescrizioneArticolo" id="Descrizione"></textarea>
-         
-         <input type="submit" value="Aggiungi"><!-- pulsante di aggiunta vettura all'elenco -->
 
-    
+            <br><br>     
+            
+            <label for="Descrizione">Descrizione articolo</label>
+            <textarea rows="3" cols="52" name="Descrizione" id="Descrizione"></textarea>
+
+            
+     <br><br><br>
+     
+         <input type="submit" value="Aggiungi" align="center"><!-- pulsante di aggiunta vettura all'elenco -->
+         
     </form>
-</h5>

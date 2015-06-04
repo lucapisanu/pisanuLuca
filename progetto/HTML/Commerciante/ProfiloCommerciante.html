@@ -1,0 +1,115 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Area Vendite</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name ="description" content="Home della sezione Commerciante">
+        <meta name ="author" content="Luca Pisanu">
+          <!-- link ai file css -->
+          <link rel="stylesheet" type="text/css" href="../../CSS/general.css" media="screen">
+          <link rel="stylesheet" type="text/css" href="../../CSS/fixed.css" media="screen">
+          <link rel="stylesheet" type="text/css" href="../../CSS/stili.css" media="screen">
+              
+    </head>
+    <body>
+        <div id="page"> <!-- divisone principale -->
+
+       
+            <div id="header"> <!-- divisione parte superiore -->
+                <div id="logo"> <!-- divisione contente il logo e il titolo -->
+                       <h1><b>AutoShop</b></h1>
+                </div>
+                
+            </div>
+            
+            <div id="menu"><!-- divisone con i link alle sezioni -->
+                    
+                    <ul>
+                        <li><a href="HomeCommerciante.html">Home</a></li>
+                        <li><a href="VendiProdotto.html">Vendi</a></li>
+                        <li class="currentPage">Dati personali</li>
+                        <li><a href="ProdottiInVendita.html">In vendita</a></li>
+                        <li><a href="StoricoVendite.html">Cronologia</a></li>
+                    </ul>
+            </div>
+                        
+            <div id="leftSidebar"><!-- divisione barra sinistra -->
+                <ul> 
+                    <li class="leftItem" id="sections">Sezioni</li>
+                </ul>
+                <ul>
+                    <li><a href="HomeCommerciante.html">Home</a></li>
+                    <li><a href="VendiProdotto.html">Vendi</a></li>
+                    <li class="currentPage">Dati personali</li>
+                    <li><a href="ProdottiInVendita.html">In vendita</a></li>
+                    <li><a href="StoricoVendite.html">Cronologia</a></li>
+                </ul>
+                <ul>
+                    <li class="leftItem" id="info" >Istruzioni</li><!-- informazioni sulla pagina corrente -->
+                    <li><h5>Effettua qui il <br/> tuo login al sito.</h5></li>  
+                </ul>
+            </div>
+                
+            
+            
+            <div id="content"><!-- divisione del corpo centrale della pagina -->
+                <ul class="icona_titolo">
+                    <li id="i_profilo">&nbsp;</li>
+                    <li> Profilo </li>
+                </ul>
+                <br/>
+                <br/>
+                
+                <h5><b>Nome azienda:</b>  <br>
+                    <b>Nome titolare:</b>  <br>
+                    <b>Indirizzo della sede:</b>  <br>
+                    <b>Descrizione:</b>
+                    
+                </h5>
+                <hr>
+
+                <h4 id="datiPersonaliModifica">Modifica Dati personali</h4>
+
+
+                <h5>
+                    <form  method="post" action="Index.php?page=Commerciante&subpage=DatiPersonaliCommerciante<?= $vd->scriviToken('&')?>">
+
+                        <input type="hidden" name="command" value="DatiPersonali"/>
+                        <label for="Nome">Nome</label>
+                        <input type="text" name="Nome" id="NomeUtente" value=""/>
+                        <br/>
+                        <label for="Cognome">Cognome</label>
+                        <input type="text" name="Cognome" id="CognomeUtente" value=""/>
+                        <br/>
+                        <label for="Azienda">Azienda</label>
+                        <input type="text" name="Azienda" id="NomeAzienda" value=""/>
+                        <br/>
+                        <label for="Indirizzo">Indirizzo</label>
+                        <input type="text" name="Indirizzo" id="IndirizzoAzienda" value=""/>
+                        <br/>
+                        <label for="DescrizioneAzienda">Descrizione Azienda</label>
+                        <textarea rows="5" cols="52" name="DescrizioneAzienda" id="DescrizioneAzienda"></textarea>
+                        <br/>
+
+                        <input type="submit" value="Modifica"/><!-- pulsante di attivazione delle modifiche -->
+                     <br>
+                    </form>
+
+
+
+
+                </h5>       
+       
+            </div>
+            
+            <div id="footer"><!-- divisione inferiore pagina-->
+                <a href="http://validator.w3.org/check/referer">Validatore Html</a>
+                <a href="http://jigsaw.w3.org/css-validator/check/refer">Validatore Css</a>​​
+            </div>
+        </div>
+    </body>
+</html>

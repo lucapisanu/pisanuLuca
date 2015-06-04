@@ -19,7 +19,8 @@ switch ($vd->getPagina()) {
         break;
 
     case 'Gestore':
-        switch ($vd->getSottoPagina()) { //controlla che contenuto della pagina deve caricare
+        switch ($vd->getSottoPagina()) { 
+    //controlla quale contenuto della pagina deve caricare
     case 'CercaAcquirente':
         include 'CercaAcquirente.php';
         break;
@@ -40,10 +41,6 @@ switch ($vd->getPagina()) {
         include 'HomeGestore.php';
         break;
     }
-    
-    default :
-        include 'HomeGestore.php';
-        break;
 }
 ?>
 

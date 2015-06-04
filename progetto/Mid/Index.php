@@ -22,12 +22,16 @@ class FrontController {
         if (isset($request["page"])) {
 
             switch ($request["page"]) {
-                case "Login":
+                case 'Login':
                    //pagina di login unica per tutti gli utenti
                     $controller = new BaseController();
                     $controller->gestioneInput($request, $_SESSION);
                     break;
-
+                case 'Registrazione': 
+                    //pagina di registrazione unica per tutti gli utenti
+                    $controller = new BaseController();
+                    $controller->gestioneInput($request, $_SESSION);
+                    break;
                 // caso di accesso da parte di un cliente
                 case 'Cliente':
                     // la pagina è accessibile solo ai clienti e all'amministratore quindi viene rimandato al controller apposito

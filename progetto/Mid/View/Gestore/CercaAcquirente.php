@@ -6,74 +6,55 @@
 <br/>
 
 <form action="demo_form.asp" method="get">
-     <label for="corto">Nome e cognome</label>
-     <input type="text" name="buyerName" id="buyerName"/><!-- vasella di inserimento del testo -->
-     <input type="submit" value="Cerca"><!-- pulsante di attivazione della ricerca -->
+     <label for="corto">Nome</label>
+     <input type="text" name="sellerName" id="sellerName"/><!-- casella di inserimento del testo -->
      <br>
-
+     <label for="corto">Cognome</label>
+     <input type="text" name="sellerSurname" id="sellerSurname"/>
+     <br>
+     
+     <input type="submit" value="Cerca"><!-- pulsante di attivazione della ricerca -->
+ 
+     <br>
+     
 </form>
-<br><hr>
+<br><br>
 
-<h4 id="venditoriLista">Lista venditori</h4>
+<h4 id="venditoriLista">Lista Acquirenti</h4>
 
-<h5>
-             <?php
-                        
-             
-             /*setta il contatore delle righe della tabella in base alle vetture presenti nell'array
-              *(se di uno stesso prodotto ci sono due copie lo conterà solo una volta)*/
-             $i = count(UserFactory::getListaClienti());
-         
-             //se non ci sono auto nella lista
-             if($i==0){
-                 
-                 echo "Nessun commerciante presente";
-             }
-             else{
-                 
+<?php 
+$clienti = UserFactory::getListaClienti(); 
+if( count($clienti) == 0) { ?>
+    <p>Nessun cliente trovato</p>
+<?php } else { ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Email</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            foreach ($clienti as $cliente) {
                 ?>
-                 <table><!-- tabella riempita con tutte le vetture in vendita -->
-                    <tr><!-- riga principale contenente tutti gli attributi -->
-                        <th>Cognome</th>
-                        <th>Nome</th>
-                        <th>Indirizzo</th>
-                        <th>Email</th>
-                        <th>Id</th>
-                        <th>Modifica</th>
-                    </tr>
-                 <?php 
-                //fino a quando ci sono vetture da stampare
-                while ($i>0){
-
-                    //se la riga è pari
-                    if($i%2==0){
-
-                    ?><tr class="evenRow"><!-- id per righe pari -->
-                    <?php       
-                    }
-                    else{
-                    ?>
-                    <tr>
-                    <?php       
-                    }
-                    ?>  
-                    <!--invoca il metodo per la restituzione del cognome del venditore-->
-                    <td> <?= UserFactory::getListaClienti()[$i-1]->getCognome()  ?> </td>
+                <tr <?= $i % 2 == 0 ? 'class="evenRow"' : '' ?>>
                     <!--invoca il metodo per la restituzione del nome del venditore-->
-                    <td> <?= UserFactory::getListaClienti()[$i-1]->getNome() ?> </td>
-                    <!--invoca il metodo per la restituzione del nome dell'azienda-->
-                    <td> <?= UserFactory::getListaClienti()[$i-1]->getIndirizzo() ?> </td>
-                    <!--invoca il metodo per la restituzione dell'indirizzo della sede-->
-                    <td> <?= UserFactory::getListaClienti()[$i-1]->getEmail() ?> </td>
-                    <!--invoca il metodo per per la restituzione dell'id-->
-                    <td> <?= UserFactory::getListaClienti()[$i-1]->getId() ?> </td>
-                    <td> <a href="<?=$url?>&command=clienteModifica&_imp=obj<?=  UserFactory::getListaClienti()[$i-1]->getId()?>" title="Modifica l'account">
-                            <img  src="../Images/modifica.png" alt="Modifica" width="20" height="20">
-                        </a></td>
-                    </tr>
-                    <?php $i--; 
-                }
-             }
-        ?>
+                    <td> <?= $cliente->getNome()  ?> </td>
+                    <!--invoca il metodo per la restituzione del cognome del venditore-->
+                    <td> <?= $cliente->getCognome() ?> </td>
+                    <!--invoca il metodo per la restituzione dell'indirizzo email del commerciante -->
+                    <td> <?= $cliente->getEmail() ?> </td>
+                    <!--invoca il metodo per per la restituzione del numero di telefono dell'azienda-->
+                    <td> <?= $cliente->getTelefono() ?> </td>
+                </tr>
+                <?php                 
+                $i++;
+            }
+            ?>
+        </tbody>
     </table>
-</h5>
+<?php } ?>

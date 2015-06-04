@@ -2,12 +2,15 @@
 
 /*altre classi da includere*/
 include_once 'BaseController.php';
+include_once basename(__DIR__) . '/../Models/Carrello.php';
+include_once basename(__DIR__) . '/../Models/CarrelloFactory.php';
 
 // classe per la gestione della modifica dei dati da parte di clienti e gestore 
 class ClienteController extends BaseController {
 
-    const venditore = 'venditore';
-    const vettura = 'vettura';
+    const maxAuto = 3; 
+    const commerciante = 'commerciante';
+    const automobile = 'automobile';
 
     // costruttore della classe che riprende quello della superclasse
     public function __construct() {
@@ -46,11 +49,6 @@ class ClienteController extends BaseController {
                     
                     case 'Carrello':
                         $vd->setSottoPagina('Carrello');
-                        $this->mostraHomeUtente($vd);
-                        break;
-                    
-                    case 'CercaVenditore':
-                        $vd->setSottoPagina('CercaVenditore');
                         $this->mostraHomeUtente($vd);
                         break;
  
@@ -93,64 +91,38 @@ class ClienteController extends BaseController {
                         $this->logout($vd);
                         break;
 
-                    // aggiornamento dei dati
+                    // aggiornamento dei dati del profilo
                     case 'DatiPersonali':
-
                         //viene creato un array per l'inserimento dei messaggi di 
                         //ciò viene inserito in input ma non viene convalidato
                         $msg = array();
-                        $this->modificaDatiPersonali($user, $request, $msg);//controlla se tutti i dati vengono aggiornati correttamente
-                        $this->creaFeedbackUtente($msg, $vd, "Dati aggiornati");//imposta una schermata con tutti gli eventuali errori
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
+                        //controlla se tutti i dati vengono aggiornati correttamente
+                        $this->modificaDatiPersonali($user, $request, $msg);
+                        //imposta una schermata con tutti gli eventuali errori
+                        $this->creaFeedbackUtente($msg, $vd, "Dati aggiornati");
+                        //ricarica la pagina in questione
+                        $this->mostraHomeUtente($vd);
                         break;
                     
-                    case 'visualizzaVenditore':
-                        
-                        $_SESSION[self::venditore] = UserFactory::getPerId($request[self::venditore]);
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
-                    break;
+                    case 'ricercaAuto' :
+                        $msg = array();
+                        self::setAutomobili($this->ricercaAuto($request, $msg));
+                        $this->creaFeedbackUtente($msg, $vd, "Auto trovate"); 
+                        $this->mostraHomeUtente($vd);
+                        break;
                 
                     case 'aggiungiCarrello':
-                        
-                        //viene creato un array per l'inserimento dei messaggi di 
-                        //ciò viene inserito in input ma non viene convalidato
                         $msg = array();
-                        $this->aggiungiAlCarrello($user, $request, $msg);//controlla se tutti i dati vengono aggiornati correttamente
-                        $this->creaFeedbackUtente($msg, $vd, "Vettura aggiunta al carrello");//imposta una schermata con tutti gli eventuali errori
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
+                        $this->aggiungiCarrello($user->getId(), $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vd, "Auto aggiunta al carrello");
+                        $this->mostraHomeUtente($vd);
                         break;
                     
-                      
-                    // visuallizione dei venditori
-                    case 'visualizzaVenditore':
-                        
-                        // prende la richiesta del venditore e la imposta come variabile di sessione da poter riutilizzare più avanti 
-                        $_SESSION[self::venditore] = UserFactory::getPerId($request[self::venditore]);
-                        
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
-                        
-                    break;
-                
-                    // aggiunta di un auto al carrello
-                    case 'aggiungiCarrello':
-                        
-                        //viene creato un array per l'inserimento dei messaggi di 
-                        //ciò viene inserito in input ma non viene convalidato
-                        $msg = array();
-                        $this->aggiungiAlCarrello($user, $request, $msg);//controlla se viene aggiunta correttamente
-                        $this->creaFeedbackUtente($msg, $vd, "Vettura aggiunta al carrello");//imposta una schermata con tutti gli eventuali errori
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
-                        break;
-                    
-                    // elimina un'auto dal carrello
                     case 'eliminaCarrello':
-                        
-                        //viene creato un array per l'inserimento dei messaggi di 
-                        //ciò viene inserito in input ma non viene convalidato
                         $msg = array();
-                        $this->eliminaDalCarrello($user, $request, $msg);//controlla se viene eliminata correttamente
-                        $this->creaFeedbackUtente($msg, $vd, "Vettura eliminata");//imposta una schermata con tutti gli eventuali errori
-                        $this->mostraHomeUtente($vd);//ricarica la pagina in questione
+                        $this->eliminaCarrello( $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vd, "Auto eliminata");
+                        $this->mostraHomeUtente($vd);
                         break;
                     
                     // di default mostra la pagina di login
@@ -169,6 +141,7 @@ class ClienteController extends BaseController {
         //chiamata alla master page per la visualizzazione a schermo della pagina
         require basename(__DIR__) . '/../View/MasterPage.php';
     }
+    
 
     /* metodo per l'aggiornamento dei dati dell'utente
      * @param User $user - utente che stà lavorando
@@ -176,101 +149,57 @@ class ClienteController extends BaseController {
      * @param array $msg - messaggi di errore */
     public function modificaDatiPersonali($user, &$request, &$msg){
 
-        
-        //se esiste una richiesta di cambiare nome
         if (isset($request['Nome'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setNome($request['Nome'])){
                 $msg[]= 'Nome inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare cognome
         if (isset($request['Cognome'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setCognome($request['Cognome'])){
                 $msg[]= 'Cognome inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare il telefono
         if (isset($request['Telefono'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setTelefono($request['Telefono'])){
                 $msg[]= 'Telefono inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare l'email
         if (isset($request['Email'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setEmail($request['Email'])){
                 $msg[]= 'Email inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare la città
         if (isset($request['Citta'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setCitta($request['Citta'])){
                 $msg[]= 'Citta inserita non corretta';
             }
         }
-        
-        //se esiste una richiesta di cambiare la via
         if (isset($request['Via'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setVia($request['Via'])){
                 $msg[]= 'Via inserita non corretta';
             }
-        }        
-        
-        //se esiste una richiesta di cambiare l'indirizzo
+        }
         if (isset($request['Cap'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setCap($request['Cap'])){
                 $msg[]= 'Cap inserita non corretta';
             }
         }
-        
-        //se esiste una richiesta di cambiare la provincia
         if (isset($request['Provincia'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setProvincia($request['Provincia'])){
                 $msg[]= 'Provincia inserita non corretta';
             }
         }
-        
-        //se esiste una richiesta di cambiare l'indirizzo
         if (isset($request['NumeroCivico'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setNumeroCivico($request['NumeroCivico'])){
                 $msg[]= 'NumeroCivico inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare l'username
         if (isset($request['Username'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setUsername($request['Username'])){
                 $msg[]= 'Username inserito non corretto';
             }
         }
-        
-        //se esiste una richiesta di cambiare la password
         if (isset($request['Password'])){
-            
-            //se la modifica non va a buon fine (return false dal metodo)
             if(!$user->setPassword($request['Password'])){
                 $msg[]= 'Password inserita non corretta';
             }
@@ -278,6 +207,7 @@ class ClienteController extends BaseController {
         
         // salviamo i dati se non ci sono stati errori
         if (count($msg) == 0) {
+            //richiamo il metodo salva dalla UserFactory per aggiornare i dati
             if (UserFactory::instance()->salva($user) != 1) {
                 $msg[] = '<li>Salvataggio non riuscito</li>';
             }
@@ -285,83 +215,118 @@ class ClienteController extends BaseController {
         
         
     } 
-    
+
+    /* metodo per la ricerca di automobili
+    * @param array $request - richieste da gestire 
+    * @param array $msg - messaggi di errore 
+    * @return array $automobili - array con le automobili trovate
+    */
+    protected function ricercaAuto(&$request, &$msg){
+       
+        $produttore = null; 
+        $modello = null; 
+        $anno = null; 
+        $prezzo = null; 
+        $i = 0;
+        
+        if (isset($request['Produttore'])){
+            $produttore = $request['Produttore'];
+            $i++;
+        }
+        if (isset($request['Modello'])){
+            $modello = $request['Modello'];
+            $i++;
+        }
+        if (isset($request['Anno'])){
+            $anno = $request['Anno'];
+            $i++; 
+        }
+        
+        if (isset($request['Prezzo'])){
+             $prezzo = $request['Prezzo'];
+             $i++;
+        }
+        
+        $automobili = AutoFactory::instance()->ricercaAuto($modello, $produttore, $anno, $prezzo); 
+        
+        if($i==0){
+            return null;
+            
+        }else if (!isset ($automobili) ) {
+              $msg[] = '<li>Ricerca non riuscita</li>';
+        }
+        
+        return $automobili; 
+    }
+
+
     /* metodo per l'iserimento di una vettura nel carrello
-     * @param User $user - utente che stà lavorando
+     * @param $id_user - id utente che stà lavorando
      * @param array $request - richieste da gestire 
      * @param array $msg - messaggi di errore */
-    public function aggiungiAlCarrello($user, &$request, &$msg){
+    protected function aggiungiCarrello($id_cliente, &$request, &$msg){
+        
+        $data = date('Y-m-d');
+        
+        if ( (CarrelloFactory::instance()->autoPerCliente($id_cliente) ) >= self::maxAuto )
+               $msg[]='Puoi avere al massimo 3 Auto nel carrello';
         
         //se esiste la richiesta con l'id della vettura
-        if (isset($request[self::vettura])){
+        if (isset($request['id_auto'])){ 
             
             //se la modifica non va a buon fine (return false dal metodo)
-            if(!$user->aggiungiCarrello($_SESSION[self::venditore]->getPerId($request[self::vettura]))){
-                $msg[]= 'Vettura già presente nel carrello';
+            if((CarrelloFactory::instance()->salvaCarrello($id_cliente, $request['id_auto'], $data)) == 0){
+                $msg[]= 'Impossibile aggiungere la vettura';
             }
         }
     }
     
     /* metodo per l'eliminazione di una vettura dal carrello
-     * @param User $user - utente che stà lavorando
      * @param array $request - richieste da gestire 
      * @param array $msg - messaggi di errore */
-    public function eliminaDalCarrello($user, &$request, &$msg){
+    protected function eliminaCarrello( &$request, &$msg){
         
-
         //se esiste la richiesta con l'id della vettura
-        if (isset($request[self::vettura])){
+        if (isset($request['id_auto'])){ 
             
             //se la modifica non va a buon fine (return false dal metodo)
-            if(!$user->rimuoviCarrello($request[self::vettura])){
+            if((CarrelloFactory::instance()->cancellaCarrello($request['id_auto'])) == 0){
                 $msg[]= 'Impossibile rimuovere la vettura';
             }
         }
     }
 
-    /* metodo per la restituzione dell'array di sessione (il vero o quello impersonato)
-     * @return array */
 
+   /* metodo per la restituzione dell'array di sessione (il vero o quello impersonato)
+    * @return array 
+    */
     public function &getSessione(&$request) {
 
         $null = null;
-
         if (!isset($_SESSION) || !array_key_exists(BaseController::user, $_SESSION)) {
-            
             // sessione che viene inizializzata
             return $null;
         }
-
         // verifica che l'utente sia realmente autenticato
         $user = $_SESSION[BaseController::user];
-
         // controlla se si tratta realmente del cliente o del gestre
         switch ($user->getRuolo()) {
-
             case User::Cliente:
-
                 return $_SESSION;
-
-
             // nel caso invece sia il gestore
             case User::Gestore:
- 
                 if (isset($request[BaseController::impersonato])) {
-                    
                     //assegna l'id di sessione
                     $index = $request[parent::impersonato];
-
-                    
+              
                     //il gestore vuole impersonare il cliente e viene restituito l'array
                     if (array_key_exists($index, $_SESSION) && $_SESSION[$index][BaseController::user]->getRuolo() == User::Cliente){
-
                         return $_SESSION[$index];
-                    }
-                    else {
-                        
+                    }else {
                         return $null;
                     }
                 }
+               
                 return $null;
 
             default: return $null;

@@ -3,7 +3,6 @@
     <li> Profilo </li>
 </ul>
 <br/>
-<br/>
 
     <b>Nome:</b> <?= $user->getNome()?> <br>
     <b>Cognome:</b> <?=  $user->getCognome() ?> <br>
@@ -20,10 +19,8 @@
     <b>Password:</b> <?=  $user->getPassword() ?> <br>
 
        
-<h5 id="datiPersonaliModifica">Modifica Dati personali</h5>
+<h4>Modifica Dati personali</h4>
 
-
-<h5>
     <form  method="post" action="Index.php?page=Commerciante&subpage=DatiPersonaliCommerciante<?= $vd->scriviToken('&')?>">
         
         <input type="hidden" name="command" value="DatiPersonali"/>
@@ -33,45 +30,41 @@
         <label for="Cognome">Cognome</label>
         <input type="text" name="Cognome" id="CognomeUtente" value="<?= $user->getCognome() ?>"/>
         <br/>
-        <label for="Azienda">Telefono</label>
+        <label for="Telefono">Telefono</label>
         <input type="text" name="Telefono" id="TelefonoUtente" value="<?= $user->getTelefono() ?>"/>
         <br/>
-        <label for="Indirizzo">Email</label>
+        <label for="Email">Email</label>
         <input type="text" name="Email" id="EmailUtente" value="<?= $user->getEmail() ?>"/>
         <br/>
         <label for="Azienda">Nome Azienda</label>
         <input type="text" name="NomeAzienda" id="NomeAzienda" value="<?= $user->getNomeAzienda() ?>"/>
         <br/>
-        <label for="Indirizzo">Citta</label>
+        <label for="Citta">Citta</label>
         <input type="text" name="Citta" id="Citta" value="<?= $user->getCitta() ?>"/>
         <br/>
-        <label for="Azienda">Via</label>
+        <label for="Via">Via</label>
         <input type="text" name="Via" id="ViaUtente" value="<?= $user->getVia() ?>"/>
         <br/>
-        <label for="Indirizzo">Cap</label>
+        <label for="Cap">Cap</label>
         <input type="text" name="Cap" id="CapUtente" value="<?= $user->getCap() ?>"/>
         <br/>
-        <label for="Azienda">Provincia</label>
+        <label for="Provincia">Provincia</label>
         <input type="text" name="Provincia" id="ProvinciaUtente" value="<?= $user->getProvincia() ?>"/>
         <br/>
-        <label for="Indirizzo">Numero civico</label>
+        <label for="NumeroCivico">Numero civico</label>
         <input type="text" name="NumeroCivico" id="NumeroCivicoUtente" value="<?= $user->getNumeroCivico() ?>"/>
         <br/>
         <label for="DescrizioneAzienda">Descrizione Azienda</label>
         <textarea rows="5" cols="52" name="DescrizioneAzienda" id="DescrizioneAzienda"><?= $user->getDescrizioneAzienda() ?></textarea>
         <br/>
-        <label for="Azienda">Username</label>
+        <label for="Username">Username</label>
         <input type="text" name="Username" id="UsernameUtente" value="<?= $user->getUsername() ?>"/>
         <br/>
-        <label for="Indirizzo">Password</label>
+        <label for="Password">Password</label>
         <input type="text" name="Password" id="PasswordUtente" value="<?= $user->getPassword() ?>"/>
         <br/>
-
+        <br>
         <input type="submit" value="Modifica"/><!-- pulsante di attivazione delle modifiche -->
      <br>
     </form>
-   
-
-
-
-</h5>       
+      

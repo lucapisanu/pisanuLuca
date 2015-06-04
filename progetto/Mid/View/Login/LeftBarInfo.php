@@ -1,5 +1,5 @@
 <?php
-switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
+switch ($vd->getSottoPagina()) { 
     case 'Login':
         ?>
 
@@ -10,7 +10,7 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
                 </p>
             </h5>
             
-        <?
+        <?php
         break;
 
     case 'Registrazione':
@@ -26,4 +26,5 @@ switch ($vd->getSottoPagina()) { //controlla che informazioni deve caricare
         <?php
         break;
 }
+
 ?>

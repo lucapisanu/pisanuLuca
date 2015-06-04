@@ -7,6 +7,11 @@ include_once 'Auto.php';
 include_once 'Commerciante.php';
 include_once 'Db.php';
 
+/**
+ * Classe per la creazione degli utenti del sistema
+ *
+ * @author Luca Pisanu
+ */
 class UserFactory{
     
     private static $singleton;
@@ -30,14 +35,14 @@ class UserFactory{
     //carica un user controllando username e password
     public function LoadUtente($username,$password){
         
-        
+        // il gestore viene caricato in maniera statica
         if ($username == 'gestore' && $password == 'gestore' ){
             
             $user = new User();
             $user->setPassword($password);
             $user->setUsername($username);
             $user->setNome('');
-            $user->setCognome('Pisanu');
+            $user->setCognome('');
             $user->setRuolo(User::Gestore);
             $user->setId(0000000000);
             return $user;       
@@ -51,7 +56,7 @@ class UserFactory{
             return null;
         }
    
-        // cerco prima nella tabella studenti
+        // cerco prima nella tabella cliente
         $query = "SELECT 
                   cliente.id_cliente cliente_id,
                   cliente.nome cliente_nome,
@@ -92,21 +97,7 @@ class UserFactory{
             $mysqli->close();
             return $cliente;
         }        
-        
-        /* Versione statica cliente
-         * 
-        if ($username == 'cliente' && $password == 'cliente' ){
             
-            $user = new ClienteFactory();
-            $user = ClienteFactory::Cliente();
-            $user->setPassword($password);
-            $user->setUsername($username);
-            
-            return $user; 
-            
-        }*/
-        
-     
         // ora cerco un commerciante
         $query = "SELECT 
                   commerciante.id_commerciante commerciante_id,
@@ -125,9 +116,6 @@ class UserFactory{
                   commerciante.password commerciante_password,
                   commerciante.ruolo commerciante_ruolo
                  FROM commerciante WHERE commerciante.username = ? AND commerciante.password = ?";
-
-        
-        
         $stmt = $mysqli->stmt_init();
         $stmt->prepare($query);
         if (!$stmt) {
@@ -150,22 +138,7 @@ class UserFactory{
             // ho trovato un commerciante
             $mysqli->close();
             return $commerciante;
-        } 
-        
-        /* Versione statica commerciante
-         * 
-        
-        if ($username == 'commerciante' && $password == 'commerciante' ){
-            
-            $user = new ();
-            $user = ::comm3();
-            $user->setPassword($password);
-            $user->setUsername($username);
-                
-            return $user; 
-            
-        }     
-         */   
+        }    
     }
     
     
@@ -176,12 +149,20 @@ class UserFactory{
     public function &getListaCommercianti() {
         $commercianti = array();
         $query = "SELECT 
+                  commerciante.id_commerciante commerciante_id,
                   commerciante.nome commerciante_nome,
                   commerciante.cognome commerciante_cognome, 
                   commerciante.telefono commerciante_telefono,
                   commerciante.email commerciante_email,
                   commerciante.nome_azienda commerciante_nome_azienda,
-                  commerciante.username commerciante_username
+                  commerciante.descrizione_azienda commerciante_descrizione_azienda,
+                  commerciante.citta commerciante_citta,
+                  commerciante.via commerciante_via,
+                  commerciante.numero_civico commerciante_numero_civico,
+                  commerciante.cap commerciante_cap,
+                  commerciante.provincia commerciante_provincia,
+                  commerciante.username commerciante_username,
+                  commerciante.password commerciante_password
                   FROM commerciante";
         $mysqli = Db::getInstance()->connectDb();
         if (!isset($mysqli)) {
@@ -209,31 +190,39 @@ class UserFactory{
      * @return array
      */
     public function &getListaClienti() {
-        $clienti = array();
-        $query = "SELECT
-                  cliente.nome cliente_nome, 
+        $cliente = array();
+        $query = "SELECT 
+                  cliente.id_cliente cliente_id,
+                  cliente.nome cliente_nome,
                   cliente.cognome cliente_cognome, 
-                  cliente.telefono cliente_telefono, 
-                  cliente.email cliente_email, 
-                  cliente.username cliente_username 
-                  FROM cliente ";
+                  cliente.telefono cliente_telefono,
+                  cliente.email cliente_email,
+                  cliente.citta cliente_citta,
+                  cliente.via cliente_via,
+                  cliente.numero_civico cliente_numero_civico,
+                  cliente.cap cliente_cap,
+                  cliente.provincia cliente_provincia,
+                  cliente.username cliente_username,
+                  cliente.password cliente_password
+                  FROM cliente";
         $mysqli = Db::getInstance()->connectDb();
         if (!isset($mysqli)) {
-            error_log("[getListaClienti] impossibile inizializzare il database");
+            error_log("[getListaCliente] impossibile inizializzare il database");
             $mysqli->close();
-            return $clienti;
+            return $cliente;
         }
         $result = $mysqli->query($query);
         if ($mysqli->errno > 0) {
             error_log("[getListaClienti] impossibile eseguire la query");
             $mysqli->close();
-            return $clienti;
+            return $cliente;
         }
 
         while ($row = $result->fetch_array()) {
             $clienti[] = self::creaClienteDaArray($row);
         }
 
+        $mysqli->close();
         return $clienti;
     }
     
@@ -359,27 +348,13 @@ class UserFactory{
 
         return $cliente;
     }
-    
-    
-    public function supportoCrea($row, $adress){
         
-        if (isset($row[$adress]))
-            {
-        return $row[$adress];
-        
-            }
-        else 
-            return '-';        
-    }
-    
-    
     /**
      * Crea un commerciante da una riga del db
      * @param type $row
      * @return \Commerciante
      */
     public function creaCommercianteDaArray($row) {
-        /*
         $commerciante = new Commerciante();
         $commerciante->setId($row['commerciante_id']);
         $commerciante->setNome($row['commerciante_nome']);
@@ -398,27 +373,6 @@ class UserFactory{
         $commerciante->setPassword($row['commerciante_password']);
 
         return $commerciante;
-            
-    */
-        $commerciante = new Commerciante();
-        $commerciante->setId(self::supportoCrea($row, 'commerciante_id'));
-        $commerciante->setNome(self::supportoCrea($row, 'commerciante_nome'));
-        $commerciante->setCognome(self::supportoCrea($row, 'commerciante_cognome'));
-        $commerciante->setTelefono(self::supportoCrea($row, 'commerciante_telefono'));
-        $commerciante->setEmail(self::supportoCrea($row, 'commerciante_email'));
-        $commerciante->setNomeAzienda(self::supportoCrea($row, 'commerciante_nome_azienda'));
-        $commerciante->setDescrizioneAzienda(self::supportoCrea($row, 'commerciante_descrizione_azienda'));
-        $commerciante->setCitta(self::supportoCrea($row, 'commerciante_citta'));
-        $commerciante->setCap(self::supportoCrea($row, 'commerciante_cap'));
-        $commerciante->setVia(self::supportoCrea($row, 'commerciante_via'));
-        $commerciante->setProvincia(self::supportoCrea($row, 'commerciante_provincia'));
-        $commerciante->setNumeroCivico(self::supportoCrea($row, 'commerciante_numero_civico'));
-        $commerciante->setRuolo(User::Commerciante);
-        $commerciante->setUsername(self::supportoCrea($row, 'commerciante_username'));
-        $commerciante->setPassword(self::supportoCrea($row, 'commerciante_password'));
-            
-        return $commerciante;
-    
     }
     
     /**
@@ -469,11 +423,9 @@ class UserFactory{
                     cap = ?,
                     via = ?,
                     username = ?,
-                    password = ?,
-                    ruolo = ?
+                    password = ?
                     where cliente.id_cliente = ?;
-                    ";
-        var_dump($query); 
+                    "; 
         
         $stmt->prepare($query);
         if (!$stmt) {
@@ -482,7 +434,7 @@ class UserFactory{
             return 0;
         }
 
-        if (!$stmt->bind_param('ssssssssssssi', 
+        if (!$stmt->bind_param('sssssssssssi', 
                 $s->getNome(), 
                 $s->getCognome(), 
                 $s->getTelefono(),
@@ -494,7 +446,6 @@ class UserFactory{
                 $s->getVia(),  
                 $s->getUsername(),
                 $s->getPassword(),
-                $s->getRuolo(),
                 $s->getId())) {
             error_log("[salvaCliente] impossibile" .
                     " effettuare il binding in input");
@@ -559,6 +510,12 @@ class UserFactory{
                     " effettuare il binding in input");
             return 0;
         }
+        
+        if (!$stmt->execute()) {
+            error_log("[caricaClienti] impossibile" .
+                    " eseguire lo statement");
+            return 0;
+        }
 
         return $stmt->affected_rows;
     }
@@ -591,7 +548,7 @@ class UserFactory{
                 $row['cliente_numero_civico'], 
                 $row['cliente_username'], 
                 $row['cliente_password'], 
-                $row['cliente_ruolo']);
+                $row[User::Cliente]);
         if (!$bind) {
             error_log("[caricaClienteDaStmt] impossibile" .
                     " effettuare il binding in output");
@@ -636,7 +593,7 @@ class UserFactory{
                 $row['commerciante_numero_civico'], 
                 $row['commerciante_username'], 
                 $row['commerciante_password'], 
-                $row['commerciante_ruolo']);
+                $row[User::Commerciante]);
         if (!$bind) {
             error_log("[caricaCommercianteDaStmt] impossibile" .
                     " effettuare il binding in output");
@@ -651,7 +608,6 @@ class UserFactory{
 
         return self::creaCommercianteDaArray($row);
     }
-    
     
 
 }

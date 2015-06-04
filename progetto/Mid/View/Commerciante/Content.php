@@ -1,5 +1,6 @@
 <?php
-switch ($vd->getSottoPagina()) { //controlla che contenuto della pagina deve caricare
+//controlla quale contenuto della pagina deve caricare
+switch ($vd->getSottoPagina()) { 
     case 'DatiPersonaliCommerciante':
         include 'DatiPersonaliCommerciante.php';
         break;

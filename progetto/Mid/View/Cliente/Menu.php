@@ -5,16 +5,12 @@ $CompraProdotto = 0;
 $DatiPersonaliCompratore = 0;
 $Carrello = 0;
 $StoricoAcquisti = 0;
-$CercaVenditore = 0;
 $RicaricaConto = 0;
 
-switch ($vd->getSottoPagina()) { //controlla per vedere di che pagina si tratta in modo da impostare a currentPage solo il collegamento della pagina corrente
+//imposta la currentPage 
+switch ($vd->getSottoPagina()) { 
     case 'Carrello':
         $Carrello = 'currentPage';
-        break;
-
-    case 'CercaVenditore':
-        $CercaVenditore = 'currentPage';
         break;
     
     case 'CompraProdottoStep1':
@@ -54,6 +50,5 @@ switch ($vd->getSottoPagina()) { //controlla per vedere di che pagina si tratta 
     <li id="<?=$DatiPersonaliCompratore?>"><a href="Index.php?page=Cliente&subpage=DatiPersonaliCompratore<?= $vd->scriviToken('&')?>">Dati personali</a></li>
     <li id="<?=$Carrello?>"><a href="Index.php?page=Cliente&subpage=Carrello<?= $vd->scriviToken('&')?>">Carrello</a></li>
     <li id="<?=$StoricoAcquisti?>"><a href="Index.php?page=Cliente&subpage=StoricoAcquisti<?= $vd->scriviToken('&')?>">Cronologia</a></li>
-    <li id="<?=$CercaVenditore?>"><a href="Index.php?page=Cliente&subpage=CercaVenditore<?= $vd->scriviToken('&')?>">Venditori</a></li>
     <li id="<?=$RicaricaConto?>"><a href="Index.php?page=Cliente&subpage=RicaricaConto<?= $vd->scriviToken('&')?>">Ricarica</a></li>
 </ul>

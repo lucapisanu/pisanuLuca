@@ -1,15 +1,15 @@
 <?php
 
 $Login = 0;
-$Registrati = 0;
+$Registrazione = 0;
 
-switch ($vd->getSottoPagina()) { //controlla per vedere di che pagina si tratta in modo da impostare la currentPage solo il collegamento della pagina corrente
+switch ($vd->getSottoPagina()) {
     case 'Login':
-        $CercaAcquirente = 'currentPage';
+        $Login = 'currentPage';
         break;
 
     case 'Registrazione':
-        $CercaVenditore = 'currentPage';
+        $Registrazione = 'currentPage';
         break;
     
     default :
