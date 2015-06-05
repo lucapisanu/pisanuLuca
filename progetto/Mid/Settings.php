@@ -10,7 +10,7 @@ class Settings {
     // variabili di accesso per il database
     public static $db_host = 'localhost';
     public static $db_user = 'pisanuLuca';
-    public static $db_password = 'carpa2697';
+    public static $db_password = 'YES';
     public static $db_name = 'amm15_pisanuLuca';
     
     private static $appPath;
