@@ -140,7 +140,7 @@ if ($invendita == 0 ){ ?>
                         </a>           
                     </td>
                     <td>
-                        <a href="" <!-- "Index.php?page=Cliente&subpage=CompraProdottoStep1&command=compra&id_auto= < $a->getId()?>" --> >
+                        <a href="#" >
                             <img height="18px" width="18px" src="../Images/aggiungi.png" alt="compra" >
                         </a>           
                     </td>
