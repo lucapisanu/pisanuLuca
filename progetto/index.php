@@ -26,7 +26,6 @@
             Nel momento della registrazione dev'essere specificato un ruolo che non può
             essere più modificato: Cliente o Commerciante 
         </p>
-        <br>
         <p>  
             I dati che figurano per ogni statino sono i seguenti:
         </p>
@@ -45,7 +44,7 @@
            In ogni profilo è possibile visualizzare/modificare:
         </p>
         <ul>
-            <li>>Nome</li>
+            <li>Nome</li>
             <li>Cognome</li>
             <li>Telefono</li>
             <li>Email</li>
@@ -72,18 +71,16 @@
         <h3>Versione dinamica con PHP</h3>
     <p>
         La homepage del progetto si trova sulla URL <a href="Mid/Index.php?page=Login">Login</a>
-    <p>
-    <br>
-    
-    <p>
+    </p>
+    <p> 
         Sono state implementate le funzioni di Login per gli utenti sottodescritti, ogni cliente pu&oacute;
         visualizzare le auto in vendita e aggiungerle o rimuoverle dal carrello. <br>
-        Inoltre i venditori possono aggiungere auto (fino un massimo di tre), rimuovere le auto in vendita o
+        I venditori possono aggiungere auto (fino un massimo di tre), rimuovere le auto in vendita o
         visualizzare quelle vendute. <br>
         In fine ogni utene pu&oacute; modificare i propri dati personali. <br>
         Tutti i dati e le modifiche sono salvate nel database. 
     </p>
-    <br>
+  
     <p>Si pu&ograve; accedere alla applicazione con le seguenti credenziali</p>
     <ul>
         <li>Ruolo cliente:</li>
