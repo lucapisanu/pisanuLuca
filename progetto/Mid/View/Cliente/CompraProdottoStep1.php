@@ -76,6 +76,8 @@ if ($invendita == 0 ){ ?>
         </tbody>
     </table>
 <?php } ?>
+    
+    <br><br>
 
 <h4>Ricerca Auto</h4>
 
