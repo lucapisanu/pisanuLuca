@@ -8,7 +8,7 @@
         <h1>Accesso all'applicazione del progetto</h1>
         <p>
             <a>
-                E' possibile accedere al progetto tramite diversi ruoli: commerciante, cliente o gestore. 
+                E' possibile accedere al progetto tramite diversi ruoli: commerciante, cliente o gestore. <br>
                 I diversi ruoli offrono diverse funzionalità. 
             </a>
         </p>
@@ -18,17 +18,15 @@
             La funzionalità di base prevede che un commerciante possa inserire i dati 
             relativi all’auto che intende vendere sul sito.
         </p>
-        <br>
         <p>
             Ogni cliente registrato al sito può visualizzare i dati realitivi alle auto in vendita,
             ed effetuare ricerche in base alle caratteristiche di suo interesse. 
         </p>
-        <br>
         <p>
             Nel momento della registrazione dev'essere specificato un ruolo che non può
             essere più modificato: Cliente o Commerciante 
         </p>
-        <br><br>
+        <br>
         <p>  
             I dati che figurano per ogni statino sono i seguenti:
         </p>
@@ -66,16 +64,16 @@
 
         <h3>Versione statica con soli HTML e CSS</h3>
         <h5>
-        <a href="http://spano.sc.unica.it/pisanuLuca/progetto/HTML/Commerciante/HomeCommerciante.html">Ruolo commerciante</a><br>
-        <a href="http://spano.sc.unica.it/pisanuLuca/progetto/HTML/Cliente/HomeCliente.html">Ruolo cliente</a><br>
-        <a href="http://spano.sc.unica.it/pisanuLuca/progetto/HTML/Gestore/HomeGestore.html">Ruolo gestore</a><br>
+        <a href="HTML/Commerciante/HomeCommerciante.html">Ruolo commerciante</a><br>
+        <a href="HTML/Cliente/HomeCliente.html">Ruolo cliente</a><br>
+        <a href="HTML/Gestore/HomeGestore.html">Ruolo gestore</a><br>
         </h5>
     
         <h3>Versione dinamica con PHP</h3>
     <p>
         La homepage del progetto si trova sulla URL <a href="Mid/Index.php?page=Login">Login</a>
     <p>
-    <br><br>
+    <br>
     
     <p>
         Sono state implementate le funzioni di Login per gli utenti sottodescritti, ogni cliente pu&oacute;
@@ -85,7 +83,7 @@
         In fine ogni utene pu&oacute; modificare i propri dati personali. <br>
         Tutti i dati e le modifiche sono salvate nel database. 
     </p>
-    <br><br>
+    <br>
     <p>Si pu&ograve; accedere alla applicazione con le seguenti credenziali</p>
     <ul>
         <li>Ruolo cliente:</li>
@@ -93,13 +91,13 @@
             <li>username: clien1 ; password: pass</li>
             <li>username: clien2 ; password: pass</li>
             <li>username: clien3 ; password: pass</li>
-        </ul>
+        </ul><br>
         <li>Ruolo commercinate:</li>
         <ul>
             <li>username: comme1 ; password: pass</li>
             <li>username: comme2 ; password: pass</li>
             <li>username: comme3 ; password: pass</li>
-        </ul>
+        </ul><br>
         <li>Ruolo gestore:</li>
         <ul>
             <li>username: gestore</li>
