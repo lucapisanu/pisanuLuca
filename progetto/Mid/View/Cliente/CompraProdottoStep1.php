@@ -76,11 +76,10 @@
 
      <br><br> 
      
-     <button name="command" type="submit" id="ricercaAuto" value="">Cerca</button>
+     <input type="button" id="ricercaAuto" value="Cerca">
 </form>
 
 <br><br>
-     
 
 <h4>Lista&nbsp;auto</h4>
 <?php 
@@ -142,7 +141,7 @@ if ($invendita == 0 ){ ?>
                     </td>
                     <td>
                         <a href="Index.php?page=Cliente&subpage=CompraProdottoStep1&command=compra&id_auto=<?=  $a->getId()?>">
-                            <img height="18px" width="18px" src="../Images/aggiungi.png" alt="" >
+                            <img height="18px" width="18px" src="../Images/aggiungi.png" alt="compra" >
                         </a>           
                     </td>
        
