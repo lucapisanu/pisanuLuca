@@ -4,83 +4,6 @@
 </ul>
 <br><br>
 
-<h4>Ricerca Auto</h4>
-
-<form  method="post" action="" <!--"Index.php?page=Cliente&subpage=CompraProdottoStep1<? $vd->scriviToken('&')?>"--> >        
-    <input type="hidden" name="command" value="ricercaAuto"/>   
-    
-    <label for="Produttore">Produttore</label>
-    <select name="Produttore"> <!-- menù a tendina dei produttori-->
-            <option value="">--Seleziona</option><!-- vuoto per non avere una selezione già preimpostata -->
-            <option value="Abarth"> Abarth </option>
-            <option value="Alfa Romeo"> Alfa Romeo </option>
-            <option value="Aston Martin"> Aston Martin </option>
-            <option value="Audi"> Audi </option>
-            <option value="Bentley"> Bentley </option>
-            <option value="BMW"> BMW </option>
-            <option value="Cadillac"> Cadillac </option>
-            <option value="Citroen"> Citroen </option>
-            <option value="Corvette"> Corvette </option>
-            <option value="Dacia"> Dacia </option>
-            <option value="Daihatsu"> Daihatsu </option>
-            <option value="Ferrari"> Ferrari </option>
-            <option value="Fiat"> Fiat </option>
-            <option value="Ford"> Ford </option>
-            <option value="Honda"> Honda </option>
-            <option value="Hyundai"> Hyundai </option>
-            <option value="Jaguar"> Jaguar </option>
-            <option value="Jeep"> Jeep </option>
-            <option value="Kia"> Kia </option>
-            <option value="Lamborghini"> Lamborghini </option>
-            <option value="Lancia"> Lancia </option>
-            <option value="Land Rover"> Land Rover </option>
-            <option value="Lexus"> Lexus </option>
-            <option value="Lotus"> Lotus </option>
-            <option value="Maserati"> Maserati </option>
-            <option value="Mazda"> Mazda </option>
-            <option value="McLaren"> McLaren </option>
-            <option value="Mercedes"> Mercedes </option>
-            <option value="Mini"> Mini </option>
-            <option value="Mitsubishi"> Mitsubishi </option>
-            <option value="Mustang"> Mustang </option>
-            <option value="Nissan"> Nissan </option>
-            <option value="Opel"> Opel </option>
-            <option value="Peugeot"> Peugeot </option>
-            <option value="Porsche"> Porsche </option>
-            <option value="Renault"> Renault </option>
-            <option value="Rolls Royce"> Rolls Royce </option>
-            <option value="Seat"> Seat </option>
-            <option value="Skoda"> Skoda </option>
-            <option value="Smart"> Smart </option>
-            <option value="Subaru"> Subaru </option>
-            <option value="Suzuki"> Suzuki </option>
-            <option value="Toyota"> Toyota </option>
-            <option value="Volkswagen"> Volkswagen </option>
-            <option value="Volvo"> Volvo </option>
-    </select>
-    
-    <br><br>
-    
-    <label for="Modello">Nome modello</label>
-    <input type="text" name="Modello" id="Modello"/><!-- casella di inserimento testo -->
-    
-    <br><br>
-     
-     <label for="Anno">Anno di Produzione maggiore di</label>
-            <input type="text" name="Anno" id="AnnoProduzione" /><!-- casella di inserimento testo -->
-     
-     <br><br>
-            
-     <label for="Prezzo">Prezzo minore di</label>
-            <input type="text" name="Prezzo" id="Prezzo"/><!-- casella di inserimento testo -->
-
-     <br><br> 
-     
-     <input type="button" id="ricercaAuto" value="Cerca">
-</form>
-
-<br><br>
-
 <h4>Lista&nbsp;auto</h4>
 <?php 
 $invendita = InvenditaFactory::instance()->caricaIdAuto();
@@ -154,5 +77,79 @@ if ($invendita == 0 ){ ?>
     </table>
 <?php } ?>
 
+<h4>Ricerca Auto</h4>
+
+    <form method="post" action=""> <!--"Index.php?page=Cliente&subpage=CompraProdottoStep1<? $vd->scriviToken('&')?>"-->      
+    <input type="hidden" name="command" value="ricercaAuto"/>   
+    
+    <label for="Produttore">Produttore</label>
+    <select name="Produttore"> <!-- menù a tendina dei produttori-->
+            <option value="">--Seleziona</option><!-- vuoto per non avere una selezione già preimpostata -->
+            <option value="Abarth"> Abarth </option>
+            <option value="Alfa Romeo"> Alfa Romeo </option>
+            <option value="Aston Martin"> Aston Martin </option>
+            <option value="Audi"> Audi </option>
+            <option value="Bentley"> Bentley </option>
+            <option value="BMW"> BMW </option>
+            <option value="Cadillac"> Cadillac </option>
+            <option value="Citroen"> Citroen </option>
+            <option value="Corvette"> Corvette </option>
+            <option value="Dacia"> Dacia </option>
+            <option value="Daihatsu"> Daihatsu </option>
+            <option value="Ferrari"> Ferrari </option>
+            <option value="Fiat"> Fiat </option>
+            <option value="Ford"> Ford </option>
+            <option value="Honda"> Honda </option>
+            <option value="Hyundai"> Hyundai </option>
+            <option value="Jaguar"> Jaguar </option>
+            <option value="Jeep"> Jeep </option>
+            <option value="Kia"> Kia </option>
+            <option value="Lamborghini"> Lamborghini </option>
+            <option value="Lancia"> Lancia </option>
+            <option value="Land Rover"> Land Rover </option>
+            <option value="Lexus"> Lexus </option>
+            <option value="Lotus"> Lotus </option>
+            <option value="Maserati"> Maserati </option>
+            <option value="Mazda"> Mazda </option>
+            <option value="McLaren"> McLaren </option>
+            <option value="Mercedes"> Mercedes </option>
+            <option value="Mini"> Mini </option>
+            <option value="Mitsubishi"> Mitsubishi </option>
+            <option value="Mustang"> Mustang </option>
+            <option value="Nissan"> Nissan </option>
+            <option value="Opel"> Opel </option>
+            <option value="Peugeot"> Peugeot </option>
+            <option value="Porsche"> Porsche </option>
+            <option value="Renault"> Renault </option>
+            <option value="Rolls Royce"> Rolls Royce </option>
+            <option value="Seat"> Seat </option>
+            <option value="Skoda"> Skoda </option>
+            <option value="Smart"> Smart </option>
+            <option value="Subaru"> Subaru </option>
+            <option value="Suzuki"> Suzuki </option>
+            <option value="Toyota"> Toyota </option>
+            <option value="Volkswagen"> Volkswagen </option>
+            <option value="Volvo"> Volvo </option>
+    </select>
+    
+    <br>
+    
+    <label for="Modello">Nome modello</label>
+    <input type="text" name="Modello" id="Modello"/><!-- casella di inserimento testo -->
+    
+    <br>
+     
+     <label for="Anno">Anno di Produzione maggiore di</label>
+            <input type="text" name="Anno" id="AnnoProduzione" /><!-- casella di inserimento testo -->
+     
+     <br><br>
+            
+     <label for="Prezzo">Prezzo minore di</label>
+            <input type="text" name="Prezzo" id="Prezzo"/><!-- casella di inserimento testo -->
+
+     <br><br> 
+     
+     <input type="button" id="ricercaAuto" value="Cerca">
+</form>
 
 

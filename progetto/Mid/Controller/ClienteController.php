@@ -272,12 +272,13 @@ class ClienteController extends BaseController {
                $msg[]='Puoi avere al massimo 3 Auto nel carrello';
         
         //se esiste la richiesta con l'id della vettura
-        if (isset($request['id_auto'])){ 
-            
-            //se la modifica non va a buon fine (return false dal metodo)
-            if((CarrelloFactory::instance()->salvaCarrello($id_cliente, $request['id_auto'], $data)) == 0){
+        if (isset($request['id_auto'])){          
+                    
+          //se la modifica non va a buon fine (return false dal metodo)
+          if((CarrelloFactory::instance()->salvaCarrello($id_cliente, $request['id_auto'], $data)) == 0){
                 $msg[]= 'Impossibile aggiungere la vettura';
-            }
+            } 
+               
         }
     }
     
