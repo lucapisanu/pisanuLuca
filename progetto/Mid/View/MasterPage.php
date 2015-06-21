@@ -21,11 +21,6 @@ include_once basename(__DIR__) . '/../Settings.php';
         <link rel="stylesheet" type="text/css" href="../CSS/fixed.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../CSS/stili.css" media="screen">
         
-        <script type="javascript" src="http://code.jquery.com/jquery-2.1.1.min.js" /></script>
-        <script type="javascript" src="../js/lib/jquery.js" /></script>
-        <script type="javascript" src="../js/lib/jquery.validate.min.js" /></script>
-        <script type="javascript" src="../js/validazione.js" /></script>
-        
     </head>
     
     <body>
