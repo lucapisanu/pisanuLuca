@@ -6,7 +6,7 @@
 
 <h4>Ricerca Auto</h4>
 
-<form  method="post" action="" <!--"Index.php?page=Cliente&subpage=CompraProdottoStep1<?= $vd->scriviToken('&')?>"--> >        
+<form  method="post" action="" <!--"Index.php?page=Cliente&subpage=CompraProdottoStep1<? $vd->scriviToken('&')?>"--> >        
     <input type="hidden" name="command" value="ricercaAuto"/>   
     
     <label for="Produttore">Produttore</label>
